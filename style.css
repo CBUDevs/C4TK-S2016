@@ -1,17 +1,3 @@
-.FPPB {
-    text-align:center;
-    color:Black;
-}
-.preview{
-    text-align:left;
-}
-.FRPB{
-    text-align:center;
-    color:Black;
-}
-.CPPB{
-     text-align:left;
-}
 
 
 .Footer{
@@ -21,6 +7,15 @@
     overflow:hidden;
     background-color: green;
     color:white;
+}
+#Body{
+    text-align: left;
+    color: black;
+}
+
+#Footer{
+    text-align: left;
+    color: black;
 }
 #video{
     float:right;
