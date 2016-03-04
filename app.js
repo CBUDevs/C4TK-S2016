@@ -156,6 +156,9 @@ var upvote =  function(key) {
             }
         });
     });
+     if (pass) {
+        userRef.child("upvoted").push;
+     }
     
     userRef.child("upvoted").on("value", function(snapshot) {
         snapshot.forEach(function(sermon) {
