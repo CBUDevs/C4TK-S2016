@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> c288aa23698bfa8e9a0f5b44512e9c9df1747927
 .FPPB {
     text-align:center;
     color:Black;
@@ -13,18 +16,45 @@
 .CPPB{
      text-align:left;
 }
+<<<<<<< HEAD
 .PCSB{
      text-align:left;
 }
 
+=======
+>>>>>>> c288aa23698bfa8e9a0f5b44512e9c9df1747927
 
 #video{
     float:right;
     width: 40vw; 
     height: 25vw;
-}
+}                                                                                                                                               
 
 a{
     color:black;
      text-decoration: underline;
 }
+<<<<<<< HEAD
+=======
+
+.container{
+    padding:20px 20px 20px 20px;
+    margin-top:20px;
+    text-align: left;
+    background-color:white;
+}
+
+#ChurchPic img{
+    width:150px;
+    height:150px;
+    border:solid;
+}
+
+#churchName{
+    font-size:20px;
+}
+
+#reputation{
+    color:green;
+}
+>>>>>>> c288aa23698bfa8e9a0f5b44512e9c9df1747927
