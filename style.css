@@ -1,0 +1,10 @@
+#video{
+    float:right;
+    width: 40vw; 
+    height: 25vw;
+}
+
+a{
+    color:black;
+     text-decoration: underline;
+}
