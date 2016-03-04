@@ -3,7 +3,7 @@
   <head>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="style.css" rel="stylesheet" type="text/css">
+      <link href="../style.css" rel="stylesheet" type="text/css">
       <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
@@ -11,7 +11,7 @@
       <meta charset="utf8">
       <title>C4TK S2016</title>
   </head>
-  <body class="grey lighten-4">
+  <body class="grey lighten-3">
     <div class="navbar-fixed">
       <nav>
           <div class="nav-wrapper green">
@@ -26,25 +26,23 @@
     </a>
     <ul>
       <li><a class="btn-floating yellow accent-4"><i class="material-icons">close</i></a></li>
-      <li><a class="btn-floating yellow accent-4" class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons">person</i></a></li>
+      <li><a class="btn-floating yellow accent-4"><i class="material-icons">person</i></a></li>
       <li><a class="btn-floating yellow accent-4"><i class="material-icons">home</i></a></li>
       <li><a class="btn-floating yellow accent-4"><i class="material-icons">search</i></a></li>
     </ul>
   </div>
-    <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-  
-  
-  
   
     <div class="container">
-      <!-- Templates will be inserted here -->
+      <div class="row" id="header">
+        <div class="col s12">
+          <div id="ChurchPic"><img src="http://blogs.thegospelcoalition.org/kevindeyoung/files/2015/02/Pretty-Church.jpg" alt="churchPic.jpg"></div>
+          <div id="churchName"><b>Church Name</b></div>
+          <div id="churchLink"><a href="link to church">Click here to visit our website</a></div>
+          <div id="churchRep">Reputation: </div>
+          <div id="churchDescription">Church Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit, massa eget posuere convallis, eros lacus molestie mauris, scelerisque porta odio tortor et ante. Nunc venenatis dolor mauris. Sed sapien nulla, suscipit vel congue ut, laoreet a augue. Mauris nec ligula eros. Suspendisse ut augue semper dui varius interdum sodales a quam. Nunc et tempus magna. Suspendisse pulvinar libero nec odio facilisis, vel tempus diam ullamcorper. In tempus commodo maximus. Ut bibendum egestas aliquet. Fusce consequat pulvinar congue. Donec tincidunt, tellus ac elementum aliquam, magna leo porttitor velit, eu egestas libero ex quis lacus. Donec convallis malesuada urna at bibendum.</div>
+        </div>
+      </div>
+      <h5>Posts: </h5>
+      <!--Cards goes here-->
     </div>
   </body>
