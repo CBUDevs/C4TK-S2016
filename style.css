@@ -1,0 +1,46 @@
+.FPPB {
+    text-align:center;
+    color:Black;
+}
+.preview{
+    text-align:left;
+}
+.FRPB{
+    text-align:center;
+    color:Black;
+}
+.CPPB{
+     text-align:left;
+}
+
+#video{
+    float:right;
+    width: 40vw; 
+    height: 25vw;
+}                                                                                                                                               
+
+a{
+    color:black;
+     text-decoration: underline;
+}
+
+.container{
+    padding:20px 20px 20px 20px;
+    margin-top:20px;
+    text-align: left;
+    background-color:white;
+}
+
+#ChurchPic img{
+    width:150px;
+    height:150px;
+    border:solid;
+}
+
+#churchName{
+    font-size:20px;
+}
+
+#reputation{
+    color:green;
+}

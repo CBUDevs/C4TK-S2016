@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="style.css" rel="stylesheet" type="text/css">
+      <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
+      <script type="text/javascript" src="app.js"></script>
+      <meta charset="utf8">
+      <title>Sermon Page</title>
+    </head>
+    <body class="grey lighten-4">
+        <div class="navbar-fixed">
+          <nav>
+              <div class="nav-wrapper green">
+                <a href="login.html" id="logo" class="brand-logo" style="padding-left:10px">C4TK S2016</a>
+              </div>
+          </nav>
+        </div>
+        
+        <div class="fixed-action-btn horizontal" style="top: 30px; right: 24px;">
+        <a class="btn-floating btn-large yellow accent-4">
+          <i class="large material-icons">navigation</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating yellow accent-4"><i class="material-icons">close</i></a></li>
+          <li><a class="btn-floating yellow accent-4"><i class="material-icons">person</i></a></li>
+          <li><a class="btn-floating yellow accent-4"><i class="material-icons">home</i></a></li>
+          <li><a class="btn-floating yellow accent-4"><i class="material-icons">search</i></a></li>
+        </ul>
+        </div>
+        <div class = "container">
+            <div class="row" id="header">
+            <div class="col s4" id="churchName"><span class="flow-text"><b><a href="churchPageUrl.com">Church</a></b></span></div>
+            <div class="col s4" id="title"><span class="flow-text"><b>Title</b></span></div>
+            <div class="col s4" id="date"><span class="flow-text"><b>Date</b></span></div>
+        </div>
+            <div class="row" id="theStuff">
+                <div class="col s12">
+                    <iframe id="video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="1" allowfullscreen></iframe>
+                    <p><b>Notes</b></p>
+                    <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ultricies laoreet ligula, vitae efficitur velit imperdiet nec. Nullam felis sapien, venenatis ac tincidunt a, luctus eget lectus. Suspendisse potenti. Maecenas egestas nisl id quam mattis bibendum. Nunc pharetra, dolor vel blandit maximus, lectus elit interdum justo, nec luctus orci arcu eget massa. Etiam consectetur faucibus arcu, eu eleifend orci ultrices et. Duis orci ante, porta sit amet mollis ut, viverra nec risus. Nunc id pulvinar justo.Praesent ultrices elit at enim mollis, in cursus sem semper. Vivamus commodo ipsum luctus neque malesuada dictum. Cras iaculis feugiat tincidunt. Proin eu urna nunc. Aliquam nulla dui, mattis et sodales sed, semper ac libero. Etiam sit amet mi sed justo commodo facilisis vel id turpis. Phasellus ac lorem consequat, consectetur magna ac, sodales erat.
+Quisque semper, tellus a tincidunt suscipit, enim tortor suscipit diam, ut laoreet eros dui sit amet erat. Pellentesque interdum mollis purus, eget luctus nisl. Maecenas pellentesque placerat dapibus. In vitae hendrerit tortor, vel bibendum felis. Nam semper ante quis augue tincidunt vestibulum. Nullam egestas, risus non placerat malesuada, est elit sagittis orci, vel efficitur metus ipsum sed ipsum. Curabitur ultrices convallis quam ut convallis. Duis a lacus non est dictum mollis. Pellentesque commodo erat vulputate, pharetra nibh a, vehicula leo. Nunc scelerisque id sapien eu condimentum. Maecenas commodo bibendum est, eu vulputate velit semper a. Integer pellentesque, nisl ac hendrerit ullamcorper, turpis libero placerat arcu, vitae feugiat lectus purus suscipit nunc. Suspendisse a diam ullamcorper, egestas neque et, dictum nisl. Duis accumsan nunc sit amet sem porttitor, lacinia gravida quam aliquam. Donec cursus egestas lacus sed condimentum. Pellentesque maximus sit amet lacus a eleifend.
+Phasellus id gravida augue, sit amet vestibulum dolor. Phasellus mollis magna tortor, sit amet dapibus arcu posuere vel. Quisque faucibus ut neque vitae mattis. Duis rutrum viverra felis, et aliquet nibh venenatis eu. Suspendisse potenti. Nulla facilisi. Mauris tempus et diam eu vulputate. Donec in augue at risus ultricies tincidunt. Ut est erat, faucibus sed metus eget, interdum varius lacus.
+Etiam vel massa sit amet arcu congue bibendum. Nullam nec rhoncus diam. Donec vitae augue odio. Nullam ligula lacus, convallis eget massa eu, viverra porttitor orci. Nunc arcu mi, placerat auctor elit in, vulputate vestibulum nunc. Aliquam accumsan suscipit purus, quis eleifend nisi interdum id. Ut placerat hendrerit lacus eu interdum. Pellentesque volutpat justo ac erat mattis, ac porttitor est pellentesque. Morbi viverra sapien dui, eget dapibus augue gravida sit amet. Nullam ac vestibulum diam, sed pharetra dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Cras sagittis leo in nisi ullamcorper rutrum. Aliquam elementum ullamcorper orci et ultrices. Vivamus a eros dapibus, volutpat diam in, fermentum diam. Nulla quis placerat odio, vitae ultrices lorem.</p>
+                <div class="col s3" id="reputation">Reputation</div>
+                <div class="col s3" id="upvote"><a class="waves-effect" onclick = "inset_function">Upvote!</a></div>
+                <!--Comment Card Goes Here-->
+                </div>
+            </div>
+        </div>
+  </body>
+</html>
