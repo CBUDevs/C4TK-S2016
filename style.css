@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .FPPB {
     text-align:center;
     color:Black;
@@ -13,7 +13,11 @@
 .CPPB{
      text-align:left;
 }
-=======
+.PCSB{
+     text-align:left;
+}
+
+
 #video{
     float:right;
     width: 40vw; 
@@ -24,4 +28,3 @@ a{
     color:black;
      text-decoration: underline;
 }
->>>>>>> cd382ca113da86be5e7caa57c5b6a4f3b6234585
