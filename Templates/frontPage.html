@@ -1,117 +1,47 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>
-    <script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-    <meta charset="utf8">
-    <title>C4TK S2016</title>
-</head>
-
-<body class="grey lighten-4">
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper green">
-                <a href="login.html" id="logo" class="brand-logo" style="padding-left:10px">C4TK S2016</a>
-            </div>
-        </nav>
-    </div>
-
-    <div class="fixed-action-btn horizontal" style="top: 30px; right: 24px;">
-        <a class="btn-floating btn-large yellow accent-4">
-            <i class="large material-icons">navigation</i>
-        </a>
-        <ul>
-            <li><a class="btn-floating yellow accent-4"><i class="material-icons">close</i></a></li>
-            <li><a class="btn-floating yellow accent-4 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
-            <li><a class="btn-floating yellow accent-4"><i class="material-icons">home</i></a></li>
-            <li><a class="btn-floating yellow accent-4"><i class="material-icons">person</i></a></li>
-            <li><a class="btn-floating yellow accent-4 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
+<!-- Templates will be inserted here -->
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#test1">Recommended</a></li>
+            <li class="tab col s3"><a href="#test2">Subscribed</a></li>
+            <div class="indicator green" style="z-index:1"></div>
         </ul>
     </div>
-
-    <div id="searchModal" class="modal">
-        <div class="modal-content">
-            <nav>
-                <form>
-                    <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
-            </nav>
-        </div>
-    </div>
-
-
-    <div id="logInModal" class="modal">
-        <div class="modal-content">
-            <h4>Log In: </h4>
-            <div class="input-field col s4 push-s4">
-                <input placeholder="Username" id="Username" type="text" class="validate">
-            </div>
-            <div class="input-field col s4 push-s4">
-                <input placeholder="Password" id="Password" type="text" class="validate">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Log In</a>
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Register</a>
-        </div>
-    </div>
-
-    <div class="container">
-
-      <!-- Templates will be inserted here -->
-    <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#test1">Recommended</a></li>
-        <li class="tab col s3"><a  href="#test2">Subscribed</a></li>
-        <div class="indicator green" style="z-index:1"></div>
-      </ul>
-    </div>
     <div id="test1" class="col s12">
-      <div id=post1>
-      <script> 
-                $(function(){
-                $('#post1').load("../Cards/FPRB.html"); 
+        <div id=post1>
+            <script>
+                $(function() {
+                    $('#post1').load("../Cards/FPRB.html");
                 });
-      </script>
-      </div>
-      <div id="post2">
-      <script> 
-                $(function(){
-                $('#post2').load("../Cards/FPRB.html"); 
+
+            </script>
+        </div>
+        <div id="post2">
+            <script>
+                $(function() {
+                    $('#post2').load("../Cards/FPRB.html");
                 });
-      </script>
-      </div>
+
+            </script>
+        </div>
     </div>
-    
-     <div id="test2" class="col s12">
-      <div id=post3>
-      <script> 
-                $(function(){
-                $('#post3').load("../Cards/FPPB.html"); 
+
+    <div id="test2" class="col s12">
+        <div id=post3>
+            <script>
+                $(function() {
+                    $('#post3').load("../Cards/FPPB.html");
                 });
-      </script>
-      </div>
-      <div id="post4">
-      <script> 
-                $(function(){
-                $('#post4').load("../Cards/FPPB.html"); 
+
+            </script>
+        </div>
+        <div id="post4">
+            <script>
+                $(function() {
+                    $('#post4').load("../Cards/FPPB.html");
                 });
-      </script>
-      </div>
+
+            </script>
+        </div>
     </div>
-  </div>
-  
-    </div>
-</body>
+</div>
