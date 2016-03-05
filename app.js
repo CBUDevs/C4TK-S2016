@@ -64,10 +64,8 @@ var goFrontPage = function () { // Needs to be changed from console.log to the a
     if (!loggedIn) {
         $("#Recommended").hide();
     }
-        if (!($("#global-choice").val())) {
-            recommended = frontPageGet(false);
-        }
-        followed = frontPageActivityGet();
+    recommended = frontPageGet(false);
+    followed = frontPageActivityGet(true);
     }
     recommended = frontPageGet(true);
 
@@ -181,7 +179,7 @@ var doSwitchContext = function (context, target) {
         "personalProfile": "personalProfile.html",
         "personalProfileTemplate": "personalProfileTemplate.html",
         "sermonPage": "sermonPage.html",
-        "sermonPageTemplate": "sermonPageTemplate.html",
+        "sermonTemplate": "sermonTemplate.html",
         "searchPage": "searchPage.html",
         "myChurchProfile": "myChurchProfile.html"
     };
