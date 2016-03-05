@@ -105,7 +105,7 @@ var frontPageGet = function (global) {
   if (loggedIn) {
       topFollowed = frontPageActivityGet();
   }
-
+  return topFollowed;
 }
 
 var frontPageActivityGet = function () { // Gathers the top 10 sermons from the users followed churches.
@@ -177,6 +177,7 @@ var searchData = function (search) {
                 }
             });
         });
+        return new Array(churchArray, sermonArray);
     });
 
     console.log(new Array(churchArray, sermonArray));
