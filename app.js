@@ -3,239 +3,254 @@ var root = 'https://c4tk.firebaseio.com/';
 var user = "https://c4tk.firebaseio.com/users/0";
 var loggedIn = false;
 
+
 // MIDDLE FUNCTIONS
-var loginSwitch = function(num) {
-  if (num > 0) {
-    $(".login-content").show();
-    $(".register-content").hide();
-  } else {
-    $(".register-content").show();
-    $(".login-content").hide();
-  }
-}
 
-var registerUser = function() {
-  var email = $("#user-email").val();
-  var password = $("#user-password").val();
-  var username = $("#user-username").val();
-  var denomination = $("#user-denomination").val();
-  var zipcode = $("#user-zipcode");
-  var bio = $("#bio").val();
-  
-  registerUserPost(bio, denomination, email, password, "", username);
-}
 
-var registerChurch = function() {
-  var email = $("#church-email").val();
-  var password = $("#church-password").val();
-  var username = $("#church-username").val();
-  var denomination = $("#church-denomination").val();
-  var link = $("#church-link").val();
-  var zipcode = $("#church-zipcode");
-  var description = $("#bio").val();
+var login = function () {
+    var uname = document.getElementById("email").value;
+    var pass = document.getElementById("password").value;
+    loginGet(uname, pass);
+};
 
-  registerChurchPost(denomination, description, email, link, password, "", username, zipcode);
-  
-}
+var doRevealFillIn = function (self) {
+    console.log(self);
+    self.style.background = "white";
+};
 
-var changeHeading = function(key) {
-  var val = headingGet(key);
-  $(".brand-logo").text(val);
-}
-
-var goFrontPage = function() { // Needs to be changed from console.log to the actual divs.
-  var recommended, followed;
-  var global = true;
-  if (loggedIn) {
-    if(!($("#global-choice").val())) {
-      recommended = frontPageGet(false);
+var loginSwitch = function (num) {
+    if (num > 0) {
+        $(".login-content").show();
+        $(".register-content").hide();
+    } else {
+        $(".register-content").show();
+        $(".login-content").hide();
     }
-    followed = frontPageActivityGet();
-  }
-  recommended = frontPageGet(true);
-  
-  for(var i = 0; i < recommended.length; i++) {
-    console.log(recommended[i]);
-  }
-  
-  for(var i = 0; i < followed.length; i++) {
-    console.log(followed[i]);
-  }
 }
 
-var doSearch = function() {
-  var churches = searchData($('#search').val()[0]);
-  var sermons = searchData($('#search').val()[1]);
-  
-  for(var i = 0; i < churches.length; i++) {
-    console.log(churches[i]);
-  }
-  for(var i = 0; i < sermons.length; i++) {
-    console.log(sermons[i]);
-  }
+var registerUser = function () {
+    var email = $("#user-email").val();
+    var password = $("#user-password").val();
+    var username = $("#user-username").val();
+    var denomination = $("#user-denomination").val();
+    var zipcode = $("#user-zipcode");
+    var bio = $("#bio").val();
+
+    registerUserPost(bio, denomination, email, password, "", username);
+};
+
+var registerChurch = function () {
+    var email = $("#church-email").val();
+    var password = $("#church-password").val();
+    var username = $("#church-username").val();
+    var denomination = $("#church-denomination").val();
+    var link = $("#church-link").val();
+    var zipcode = $("#church-zipcode");
+    var description = $("#bio").val();
+
+    registerChurchPost(denomination, description, email, link, password, "", username, zipcode);
+
 }
 
-var goProfilePage = function(key) {
-  var profileInfo = profileGet(key);
-  $("#profile-username").text(profileInfo.username);
-  if (profileInfo.link)
-    $("#profile-link").text(profileInfo.link);
-  if (profile.followers)
-    $("#follower-count").text(profileInfo.followers);
-  $("#denomination").text(profileInfo.denomination);
-  if (profileInfo.description)
-    $("#description").text(profileInfo.description);
-  else
-    $("#bio").text(profileInfo.bio);
-  if (profileInfo.sermons) {
-    for (var i = 0; i < profileInfo.sermons; i++) {
-      console.log(profileInfo.sermons[i]);
+var changeHeading = function (key) {
+    var val = headingGet(key);
+    $(".brand-logo").text(val);
+};
+
+var goFrontPage = function () { // Needs to be changed from console.log to the actual divs.
+    var recommended, followed;
+    var global = true;
+    if (loggedIn) {
+        if (!($("#global-choice").val())) {
+            recommended = frontPageGet(false);
+        }
+        followed = frontPageActivityGet();
     }
-  }
-}
+    recommended = frontPageGet(true);
 
-var doProfileEdit = function(key) {
-  var profileInfo = profileGet(key);
-  $("#profile-username").text(profileInfo.username);
-  if (profileInfo.link)
-    $("#profile-link").text(profileInfo.link);
-  if (profile.followers)
-    $("#follower-count").text(profileInfo.followers);
-  $("#denomination").text(profileInfo.denomination);
-  if (profileInfo.description)
-    $("#description").text(profileInfo.description);
-  else
-    $("#bio").text(profileInfo.bio);
-  if (profileInfo.sermons) {
-    for (var i = 0; i < profileInfo.sermons; i++) {
-      console.log(profileInfo.sermons[i]);
+    for (var i = 0; i < recommended.length; i++) {
+        console.log(recommended[i]);
     }
-  }
-}
 
-var doProfileSubmit = function(key, user) {
-  var following = new Array();
-  var bio = $("#bio").val();
-  var denomination = $("#denomination").val();
-  var email = $("#email").val();
-  $( ".following" ).each(function() {
-    following.push($( this ).val());
-  });
-  var password = $('#password').val();
-  var picture = $('#picture').val();
-  var username = $('#username').val();
-  
-  if(bio != "" && denomination != "" && email != "" && password != "" && picture != "" && username != "") {
-    profilePost(key, bio, denomination, email, following, password, picture, username);
-  }
-}
-
-var goChurchPage = function(key) {
-  var church = churchGet(key);
-  console.log (church.denomination);
-  console.log (church.description);
-  console.log (church.followers);
-  console.log (church.link);
-  console.log (church.sermons);
+    for (var i = 0; i < followed.length; i++) {
+        console.log(followed[i]);
+    }
 }
 
 
-var doSwitchContext = function(context) {
-  switch(context) {
-    case "churchProfile":
-      $( ".container" ).load( "churchProfile.html" );
-      break;
-    case "churchProfileTemplate":
-      $( ".container" ).load( "churchProfileTemplate.html" );
-      break;
-    case "frontPage":
-      $( ".container" ).load( "frontPage.html" );
-      break;
-    case "personalProfile":
-      $( ".container" ).load( "personalProfile.html" );
-      break;
-    case "personalProfileTemplate":
-      $( ".container" ).load( "personalProfileTemplate.html" );
-      break;
-    case "sermonPage":
-      $( ".container" ).load( "sermonPage.html" );
-      break;
-    case "sermonPageTemplate":
-      $( ".container" ).load( "sermonPageTemplate.html" );
-      break;
-  }
+var doSearch = function () {
+    var churches = searchData($('#search').val()[0]);
+    var sermons = searchData($('#search').val()[1]);
+
+    for (var i = 0; i < churches.length; i++) {
+        console.log(churches[i]);
+    }
+    for (var i = 0; i < sermons.length; i++) {
+        console.log(sermons[i]);
+    }
+}
+
+var goProfilePage = function (key) {
+    var profileInfo = profileGet(key);
+    $("#profile-username").text(profileInfo.username);
+    if (profileInfo.link)
+        $("#profile-link").text(profileInfo.link);
+    if (profile.followers)
+        $("#follower-count").text(profileInfo.followers);
+    $("#denomination").text(profileInfo.denomination);
+    if (profileInfo.description)
+        $("#description").text(profileInfo.description);
+    else
+        $("#bio").text(profileInfo.bio);
+    if (profileInfo.sermons) {
+        for (var i = 0; i < profileInfo.sermons; i++) {
+            console.log(profileInfo.sermons[i]);
+        }
+    }
+}
+
+var doProfileEdit = function (key) {
+    var profileInfo = profileGet(key);
+    $("#profile-username").text(profileInfo.username);
+    if (profileInfo.link)
+        $("#profile-link").text(profileInfo.link);
+    if (profile.followers)
+        $("#follower-count").text(profileInfo.followers);
+    $("#denomination").text(profileInfo.denomination);
+    if (profileInfo.description)
+        $("#description").text(profileInfo.description);
+    else
+        $("#bio").text(profileInfo.bio);
+    if (profileInfo.sermons) {
+        for (var i = 0; i < profileInfo.sermons; i++) {
+            console.log(profileInfo.sermons[i]);
+        }
+    }
+}
+
+var doProfileSubmit = function (key, user) {
+    var following = new Array();
+    var bio = $("#bio").val();
+    var denomination = $("#denomination").val();
+    var email = $("#email").val();
+    $(".following").each(function () {
+        following.push($(this).val());
+    });
+    var password = $('#password').val();
+    var picture = $('#picture').val();
+    var username = $('#username').val();
+
+    if (bio != "" && denomination != "" && email != "" && password != "" && picture != "" && username != "") {
+        profilePost(key, bio, denomination, email, following, password, picture, username);
+    }
+}
+
+var goChurchPage = function (key) {
+    var church = churchGet(key);
+    console.log(church.denomination);
+    console.log(church.description);
+    console.log(church.followers);
+    console.log(church.link);
+    console.log(church.sermons);
+}
+
+
+var doSwitchContext = function (context) {
+    switch (context) {
+        case "churchProfile":
+            $(".container").load("churchProfile.html");
+            break;
+        case "churchProfileTemplate":
+            $(".container").load("churchProfileTemplate.html");
+            break;
+        case "frontPage":
+            $(".container").load("frontPage.html");
+            break;
+        case "personalProfile":
+            $(".container").load("personalProfile.html");
+            break;
+        case "personalProfileTemplate":
+            $(".container").load("personalProfileTemplate.html");
+            break;
+        case "sermonPage":
+            $(".container").load("sermonPage.html");
+            break;
+        case "sermonPageTemplate":
+            $(".container").load("sermonPageTemplate.html");
+            break;
+    }
 }
 
 // FIREBASE FUNCTIONS
-var loginGet = function(email, password) {
-  var ref = new Firebase(root).child("users");
-  ref.on("value", function(snapshot) {
-    snapshot.forEach(function(user) {
-      if (user.val().email.toLowerCase() == email.toLowerCase() && user.val().password.toLowerCase() == password.toLowerCase()) {
-        loggedIn = true;
-        user = user.val();
+var loginGet = function (email, password) {
+    var ref = new Firebase(root).child("users");
+    ref.on("value", function (snapshot) {
+        snapshot.forEach(function (user) {
+            if (user.val().email.toLowerCase() == email.toLowerCase() && user.val().password.toLowerCase() == password.toLowerCase()) {
+                loggedIn = true;
+                user = user.val();
+                return true;
+            }
+        });
+    });
+}
+
+var registerUserPost = function (bio, denomination, email, password, picture, username, zipcode) {
+    var ref = new Firebase(root).child("users");
+    ref.on("value", function (snapshot) {
+        snapshot.forEach(function (user) {
+            if (user.val().email == email) {
+                return false;
+            }
+        });
+    });
+    ref.push({
+        bio: bio,
+        denomination: denomination,
+        email: email,
+        password: password,
+        picture: picture,
+        username: username,
+        zipcode: zipcode,
+    });
+
+    ref.endAt().limit(1).on('child_added', function (snapshot) {
+        // all records after the last continue to invoke this function
+        user = snapshot.val();
+        console.log(user);
         return true;
-      }
     });
-  });
 }
 
-var registerUserPost = function(bio, denomination, email, password, picture, username, zipcode) {
-  var ref = new Firebase(root).child("users");
-  ref.on("value", function(snapshot) {
-    snapshot.forEach(function(user) {
-      if (user.val().email == email) {
-        return false;
-      }
+var registerChurchPost = function (denomination, description, email, link, password, picture, username, zipcode) {
+    var ref = new Firebase(root).child("churches");
+    ref.on("value", function (snapshot) {
+        snapshot.forEach(function (church) {
+            if (church.val().email == email) {
+                return false;
+            }
+        });
     });
-  });
-  ref.push({
-    bio : bio,
-    denomination : denomination,
-    email : email,
-    password : password,
-    picture : picture,
-    username : username,
-    zipcode : zipcode,
-  });
-  
-  ref.endAt().limit(1).on('child_added', function(snapshot) {
-    // all records after the last continue to invoke this function
-    user = snapshot.val();
-    console.log(user);
-    return true;
-  });
+    ref.push({
+        denomination: denomination,
+        email: email,
+        link: link,
+        password: password,
+        picture: picture,
+        username: username,
+        zipcode: zipcode,
+    });
+
+    ref.endAt().limit(1).on('child_added', function (snapshot) {
+        // all records after the last continue to invoke this function
+        user = snapshot.val();
+        console.log(user);
+        return true;
+    });
 }
 
-var registerChurchPost = function(denomination, description, email, link, password, picture, username, zipcode) {
-  var ref = new Firebase(root).child("churches");
-  ref.on("value", function(snapshot) {
-    snapshot.forEach(function(church) {
-      if (church.val().email == email) {
-        return false;
-      }
-    });
-  });
-  ref.push({
-    denomination : denomination,
-    email : email,
-    link : link,
-    password : password,
-    picture : picture,
-    username : username,
-    zipcode : zipcode,
-  });
-  
-  ref.endAt().limit(1).on('child_added', function(snapshot) {
-    // all records after the last continue to invoke this function
-    user = snapshot.val();
-    console.log(user);
-    return true;
-  });
-}
-
-var logout = function() {
-  loggedIn = false;
+var logout = function () {
+    loggedIn = false;
 }
 
 var headingGet = function (userKey) { // Returns the username of the profile. 
@@ -246,29 +261,29 @@ var headingGet = function (userKey) { // Returns the username of the profile.
 };
 
 var frontPageGet = function (global) {
-  var topFollowed, topSermons, ref = new Firebase(root);
-  ref.child("hot").on("value", function (snapshot) {
-      snapshot.forEach(function (post) {
-          var postRef = new Firebase(post.val().sermonReference).parent().parent();
-          var userRef = new Firebase(user).child("zipcode");
-          if (global) {
-              topSermons.push(post.val());
-          } else {
-              postRef.on("value", function (postSnapshot) {
-                  userRef.on("value", function (userSnapshot) {
-                      if (postSnapshot.val().zipcode === userSnapshot.val()) {
-                          topSermons.push(post.val());
-                      }
-                  });
-              });
-          }
-      });
-  });
+    var topFollowed, topSermons, ref = new Firebase(root);
+    ref.child("hot").on("value", function (snapshot) {
+        snapshot.forEach(function (post) {
+            var postRef = new Firebase(post.val().sermonReference).parent().parent();
+            var userRef = new Firebase(user).child("zipcode");
+            if (global) {
+                topSermons.push(post.val());
+            } else {
+                postRef.on("value", function (postSnapshot) {
+                    userRef.on("value", function (userSnapshot) {
+                        if (postSnapshot.val().zipcode === userSnapshot.val()) {
+                            topSermons.push(post.val());
+                        }
+                    });
+                });
+            }
+        });
+    });
 
-  if (loggedIn) {
-      topFollowed = frontPageActivityGet();
-  }
-  return topFollowed;
+    if (loggedIn) {
+        topFollowed = frontPageActivityGet();
+    }
+    return topFollowed;
 }
 
 var frontPageActivityGet = function () { // Gathers the top 10 sermons from the users followed churches.
@@ -635,7 +650,7 @@ var unfollow = function (churchKey) {
 }
 
 $(document).ready(function () {
-  $(".register-content").hide(); // hides the registration content on the login modal.
-  $('.modal-trigger').leanModal();
-  
+    $(".register-content").hide(); // hides the registration content on the login modal.
+    $('.modal-trigger').leanModal();
+
 });
