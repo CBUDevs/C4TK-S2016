@@ -1,6 +1,5 @@
 
-<<<<<<< HEAD
-=======
+
     $('.modal-trigger').leanModal();
     console.log(root);
 });
@@ -19,9 +18,7 @@ var changeHeading(){
     
 };
 
-var
 
->>>>>>> bc3d201356e3f55c1c36f36bb6d9a7887c5a825c
 var loginSwitch = function(num) {
   if (num > 0) {
     $(".login-content").show();
