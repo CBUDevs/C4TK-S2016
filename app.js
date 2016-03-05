@@ -640,5 +640,5 @@ var unfollow = function (churchKey) {
 $(document).ready(function () {
     $(".register-content").hide(); // hides the registration content on the login modal.
     $('.modal-trigger').leanModal();
-
+    doSwitchContext("frontPage");
 });
