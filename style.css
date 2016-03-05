@@ -1,8 +1,9 @@
 
 
-.Footer{
-    text-align: left;
+li.menu-item.current-menu-item {
+    background: black !important;
 }
+
 #Header{
     overflow:hidden;
     background-color: green;
@@ -16,6 +17,12 @@
 #Footer{
     text-align: left;
     color: black;
+}
+
+#Subscription img{
+    margin: 8px 8px 8px 8px;
+    border:solid;
+    
 }
 #video{
     float:right;
