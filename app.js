@@ -154,7 +154,7 @@ var goChurchPage = function (key) {
     console.log(church.sermons);
 }
 
-var doSwitchContext = function (context) {
+var doSwitchContext = function (context, target) {
     var templatesDir = "/Templates/";
     var translate = {
         "churchProfile": "churchProfile.html",
