@@ -469,11 +469,3 @@ var unfollow = function (churchKey) {
         });
     }
 }
-
-$(document).ready(function () {
-
-    $('.modal-trigger').leanModal();
-    registerUser("bio", "denomination", "email", "password", "picture", "username");
-     
-
-});
