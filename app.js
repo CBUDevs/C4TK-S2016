@@ -164,7 +164,7 @@ var doSwitchContext = function (context) {
         "personalProfileTemplate": "personalProfileTemplate.html",
         "sermonPage": "sermonPage.html",
         "sermonPageTemplate": "sermonPageTemplate.html"
-    }
+    };
     $(".container").load(templatesDir + translate[context]);
 
 }
