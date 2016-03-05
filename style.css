@@ -1,84 +1,74 @@
-#Header{
-
-    overflow:hidden;
+#Header {
+    overflow: hidden;
     background-color: #66bb6a;
-
     background-color: green;
-
-    color:white;
+    color: white;
 }
-
-#Header img{ margin:10px 10px 0px 0px;}
-
-#Body{
+#Header img {
+    margin: 10px 10px 0px 0px;
+}
+#Body {
     text-align: left;
     color: black;
 }
-
-#Footer{
+#Footer {
     text-align: left;
     color: black;
 }
-
-#Subscription img{
+#Subscription img {
     margin: 8px 8px 8px 8px;
-    border:solid;
-    border-color:green;
+    border: solid;
+    border-color: green;
 }
-#video{
-    float:right;
-    width: 40vw; 
+#video {
+    float: right;
+    width: 40vw;
     height: 25vw;
-}                                                                                                                                               
-
-a{
-    color:black;
-     text-decoration: underline;
 }
-
-.container{
-    padding:20px 20px 20px 20px;
-    margin-top:20px;
+a {
+    color: black;
+    text-decoration: underline;
+}
+.container {
+    padding: 20px 20px 20px 20px;
+    margin-top: 20px;
     text-align: left;
-    background-color:white;
+    background-color: white;
 }
-
-#ChurchPic img{
-    margin:0px 10px 5px 0px;
-    float:left;
-    width:150px;
-    height:150px;
-    border:solid;
+#ChurchPic img {
+    margin: 0px 10px 5px 0px;
+    float: left;
+    width: 150px;
+    height: 150px;
+    border: solid;
 }
-
-#churchName{
-    font-size:20px;
+#churchName {
+    font-size: 20px;
 }
-#profilePic img{
-    margin:0px 10px 5px 0px;
-    float:left;
-    width:150px;
-    height:150px;
-    border:solid;
-    border-color:green; 
+#profilePic img {
+    margin: 0px 10px 5px 0px;
+    float: left;
+    width: 150px;
+    height: 150px;
+    border: solid;
+    border-color: green;
 }
-#reputation{
-    color:green;
+#reputation {
+    color: green;
 }
-
-#Submit{
-    margin-right:10px;
-    float:right;
+#Submit {
+    margin-right: 10px;
+    float: right;
 }
-
-#formHead{ text-align: center;}
-
-#subscribe{float:right; }
-
-#search{
-    background-color:#81c784;
+#formHead {
+    text-align: center;
 }
-
-.tabs a:link{
-    color:green;
+#subscribe {
+    float: right;
+}
+#search {
+    background-color: #81c784;
+}
+.tabs a:link {
+    color: green;
 }
