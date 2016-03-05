@@ -5,11 +5,73 @@ var loggedIn = false;
 
 // FIREBASE FUNCTIONS
 var loginGet = function(email, password) {
-  
+  var ref = new Firebase(root).child("users");
+  ref.on("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val().email.toLowerCase() == email.toLowerCase() && user.val().password.toLowerCase() == password.toLowerCase()) {
+        loggedIn = true;
+        user = user.val();
+        return true;
+      }
+    });
+  });
 }
 
-var registerPost = function(email, password, username, denomination, church) {
+var registerUser = function(bio, denomination, email, password, picture, username) {
+  var ref = new Firebase(root).child("users");
+  ref.on("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val().email == email) {
+        return false;
+      }
+    });
+  });
+  ref.push({
+    bio : bio,
+    denomination : denomination,
+    email : email,
+    password : password,
+    picture : picture,
+    username : username,
+  });
   
+  ref.endAt().limit(1).on('child_added', function(snapshot) {
+    // all records after the last continue to invoke this function
+    user = snapshot.val();
+    console.log(user);
+    return true;
+  });
+}
+
+var registerChurch = function(denomination, description, email, link, password, picture, username, zipcode) {
+  var ref = new Firebase(root).child("churches");
+  ref.on("value", function(snapshot) {
+    snapshot.forEach(function(church) {
+      if (church.val().email == email) {
+        return false;
+      }
+    });
+  });
+  ref.push({
+    denomination : denomination,
+    email : email,
+    link : link,
+    password : password,
+    picture : picture,
+    username : username,
+    zipcode : zipcode,
+  });
+  
+  ref.endAt().limit(1).on('child_added', function(snapshot) {
+    // all records after the last continue to invoke this function
+    user = snapshot.val();
+    console.log(user);
+    return true;
+  });
+}
+
+var logout = function() {
+  loggedIn = false;
 }
 
 var headingGet = function(userKey) { // Returns the username of the profile. 
@@ -408,5 +470,7 @@ var unfollow = function(churchKey) {
 $(document).ready(function() {
 
     $('.modal-trigger').leanModal();
+    registerUser("bio", "denomination", "email", "password", "picture", "username");
+     
 
 });
