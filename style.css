@@ -1,8 +1,9 @@
 #Header {
     overflow: hidden;
     background-color: green;
+    background: green;
     color: white;
-    border-radius: 10px;
+
 }
 #Header img {
     margin: 10px 10px 0px 0px;
@@ -76,6 +77,7 @@ a {
     color: green;
 }
 
+<<<<<<< HEAD
 .registerButton{
     margin-bottom:10px;
 }
@@ -86,4 +88,9 @@ a {
 
 .btn :hover{
     background-color: #fbc02d;
+=======
+.fillin{
+    background: black;
+    
+>>>>>>> 970f777c88c44aa06973301f194717ae4976f0d7
 }
