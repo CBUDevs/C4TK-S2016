@@ -64,10 +64,9 @@ var goFrontPage = function () { // Needs to be changed from console.log to the a
     if (!loggedIn) {
         $("#Recommended").hide();
     }
+    popular = frontPageGet(true);
+    followed = frontPageActivityGet();
     recommended = frontPageGet(false);
-    followed = frontPageActivityGet(true);
-    }
-    recommended = frontPageGet(true);
 
     for (var i = 0; i < recommended.length; i++) {
         console.log(recommended[i]);
