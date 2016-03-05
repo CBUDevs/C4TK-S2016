@@ -11,16 +11,11 @@ def get_users(n):
 	# append random email address
 
 	all_denoms = populate.clean_denoms.get_cleaned()
+	with open("populate/default_users.txt") as f:
+		defaults = eval(f.read())
 
-	user_list = [{'denomination': 'Wesleyism',
-  'downvoted': [],
-  'email': 'wesley@sailingsupport.com',
-  'following': [],
-  'name': 'Wesley Davis',
-  'password': 'password',
-  'seen': [],
-  'username': 'wesley_davis',
-  'uvpoted': []}]
+	user_list = defaults[:]
+
 	for x in range(n):
 		i = random.choice(contents)
 		first = i[0]
