@@ -28,21 +28,21 @@
 
     <div class="fixed-action-btn horizontal" style="top: 30px; right: 24px;">
 
-    <a class="btn-floating btn-large yellow darken-3">
+        <a class="btn-floating btn-large yellow darken-3">
 
-      <i class="large material-icons">navigation</i>
+            <i class="large material-icons">navigation</i>
 
-      <i class="brown-text large material-icons">navigation</i>
+            <i class="brown-text large material-icons">navigation</i>
 
-    </a>
-    <ul>
-      <li><a class="btn-floating yellow darken-3 btn"><i class="material-icons">close</i></a></li>
-      <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
-      <li><a class="btn-floating yellow darken-3 btn" href="Templates/frontPage.html"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating yellow darken-3 btn" href="Templates/personalProfile.html"><i class="material-icons">person</i></a></li>
-      <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
-    </ul>
-  </div>
+        </a>
+        <ul>
+            <li><a class="btn-floating yellow darken-3 btn"><i class="material-icons">close</i></a></li>
+            <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
+            <li><a class="btn-floating yellow darken-3 btn" href="Templates/frontPage.html"><i class="material-icons">home</i></a></li>
+            <li><a class="btn-floating yellow darken-3 btn" href="Templates/personalProfile.html"><i class="material-icons">person</i></a></li>
+            <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
+        </ul>
+    </div>
 
     <div id="searchModal" class="modal">
         <div class="modal-content">
@@ -57,41 +57,41 @@
             </nav>
         </div>
     </div>
-      
-    <div class="row">
-      <div id="logInModal" class="modal col l4 m6 s12 push-l4 push-l3">
-        <div class="row">
-          <div class="col s12">
-            <ul class="tabs">
-              <li class="tab col s3"><a class="active" onclick="loginSwitch(1)">Log In</a></li>
-              <li class="tab col s3"><a onclick="loginSwitch(0)">Register</a></li>
-              <div class="indicator green" style="z-index:1"></div>
-            </ul>
-          </div>
-        </div>
-    
-      <div class="login-content row">
-        <div class="modal-content s12">
-          <div class ="input-field col s12">
-            <input placeholder="Email" id="email" type="email" class="validate">
-          </div>
-          <div class ="input-field col s12">
-            <input placeholder="Password" id="password" type="password" class="validate">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a class="waves-effect waves-light btn" onclick="login()">Log In</a>
-        </div>
-      </div>
-      <div class="register-content row">
-        <a class="waves-effect waves-light btn registerButton col s12" onclick = "">church</a>
-        <div class="register-content row">
-          <a class="waves-effect waves-light btn registerButton col s12" onclick="doTemplates/personalProfileTemplate.html">Person</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="container">
-        <!-- Templates will be inserted here -->
-    </div>
+    <div class="row">
+        <div id="logInModal" class="modal col l4 m6 s12 push-l4 push-l3">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" onclick="loginSwitch(1)">Log In</a></li>
+                        <li class="tab col s3"><a onclick="loginSwitch(0)">Register</a></li>
+                        <div class="indicator green" style="z-index:1"></div>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="login-content row">
+                <div class="modal-content s12">
+                    <div class="input-field col s12">
+                        <input placeholder="Email" id="email" type="email" class="validate">
+                    </div>
+                    <div class="input-field col s12">
+                        <input placeholder="Password" id="password" type="password" class="validate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="waves-effect waves-light btn" onclick="login()">Log In</a>
+                </div>
+            </div>
+            <div class="register-content row">
+                <a class="waves-effect waves-light btn registerButton col s12" onclick="">church</a>
+                <div class="register-content row">
+                    <a class="waves-effect waves-light btn registerButton col s12" onclick="doTemplates/personalProfileTemplate.html">Person</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Templates will be inserted here -->
+        </div>
 </body>
