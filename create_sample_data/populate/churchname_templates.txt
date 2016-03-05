@@ -1,0 +1,8 @@
+{city} Ave {denom}
+First {denom} of {city}
+Your Friendly Neighborhood {denom}
+{city} {denom}
+Second {denom} of {city}
+Last {denom} of {city}
+The Super Awesome {denom} of {city}
+The One, the Only, {denom} in {city}!
