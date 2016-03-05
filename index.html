@@ -79,12 +79,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="waves-effect waves-light btn" onclick="login(); doSwitchContext('frontPage')" href=" ">Log In</a>
+                    <a class="waves-effect waves-light btn" onclick="login(); doSwitchContext('frontPage');$('#logInModal').closeModal();" href="#!">Log In</a>
                 </div>
             </div>
             <div class="register-content row">
 
-                <a class="waves-effect waves-light btn registerButton col s12" onclick="doSwitchContext('churchProfileTemplate'); $('#logInModal').closeModal();" href="#!">church</a>
+                <a class="waves-effect waves-light btn registerButton col s12" onclick="doSwitchContext('churchProfileTemplate'); $('#logInModal').closeModal();">church</a>
                 <div class="register-content row">
                     <a class="waves-effect waves-light btn registerButton col s12" onclick="doSwitchContext('personalProfileTemplate'); $('#logInModal').closeModal();" href="#!">Person</a>
 

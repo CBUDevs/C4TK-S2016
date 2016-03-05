@@ -1,8 +1,8 @@
 // GLOBAL VARS
 var root = 'https://c4tk.firebaseio.com/';
-var user = null;
-var church = null;
-var loggedIn = false;
+this.user = null; //reference to logged in user
+var church = null; //whether user is a church
+var loggedIn = false; //is logged in
 
 
 // MIDDLE FUNCTIONS
@@ -10,8 +10,8 @@ var loggedIn = false;
 
 var login = function () {
     var uname = document.getElementById("email").value;
-    var pass = document.getElementById("password").value;
-    loginGet(uname, pass);
+    var pw = document.getElementById("password").value;
+    loginGet(uname, pw);
 };
 
 var doRevealFillIn = function (self) {
@@ -191,32 +191,38 @@ var loginGet = function (email, password) {
     var ref = new Firebase(root).child("users");
     var pass = false;
     ref.on("value", function (snapshot) {
+        console.log(snapshot.val().toString());
         snapshot.forEach(function (u) {
-            if (u.val().email.toLowerCase() === email.toLowerCase() && u.val().password.toLowerCase() === password.toLowerCase()) {
-                console.log(user.ref().toString());
-                loggedIn = true;
+            //            console.log(u.val());
+            if (u.val().email == email && u.val().password == password) {
+//                console.log("Matched:" + u.val());
+//                console.log(u.ref().toString());
+                //                loggedIn = true;
                 pass = true;
                 church = false;
-                user = u.ref();
+                user = u;
+                    alert("Logged in as" + user.val().username);
                 return pass;
             }
         });
     });
-    if (!pass) {
 
-        var ref = new Firebase(root).child("churches");
-        ref.on("value", function (snapshot) {
-            snapshot.forEach(function (c) {
-                if (c.val().email === email && c.val().password === password) {
-                    loggedIn = true;
-                    pass = true;
-                    church = true;
-                    user = c.ref();
-                    return pass;
-                }
-            });
+    var ref = new Firebase(root).child("churches");
+    ref.on("value", function (snapshot) {
+        snapshot.forEach(function (c) {
+            if (c.val().email === email && c.val().password === password) {
+//                console.log("Matched:" + c.val());
+                //                loggedIn = true;
+                pass = true;
+                church = true;
+                user = c.ref();
+                    alert("Logged in as" + user.val().username);
+                return pass;
+            }
         });
-    }
+    });
+    return pass;
+
 }
 
 var registerUserPost = function (bio, denomination, email, password, picture, username, zipcode) {
