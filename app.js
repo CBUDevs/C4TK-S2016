@@ -13,7 +13,7 @@ var changeHeading = function() {
 };
 
 var doRevealFillIn = function() {
-    this.style.color="white";
+    this[0].style.Color = "red";
 };
 
 var loginSwitch = function (num) {
@@ -24,7 +24,7 @@ var loginSwitch = function (num) {
         $(".register-content").show();
         $(".login-content").hide();
     }
-}
+};
 
 var registerUser = function () {
     var email = $("#user-email").val();
@@ -33,7 +33,7 @@ var registerUser = function () {
     var denomination = $("#user-denomination").val();
     var zipcode = $("#user-zipcode");
     var bio = $("#bio").val();
-}
+};
 var loginSwitch = function(num) {
   if (num > 0) {
     $(".login-content").show();
@@ -42,7 +42,7 @@ var loginSwitch = function(num) {
     $(".register-content").show();
     $(".login-content").hide();
   }
-}
+};
 
 var registerChurch = function () {
     var email = $("#church-email").val();
