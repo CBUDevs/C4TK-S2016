@@ -64,6 +64,11 @@ a{
     color:green;
 }
 
-.input-field{
-    background-color:green;
+#Submit{
+    margin-right:10px;
+    float:right;
+}
+
+#formHead{
+    text-align: center;
 }
