@@ -6,22 +6,21 @@ var loggedIn = false;
 // FIREBASE FUNCTIONS
 var loginGet = function (email, password) {
 
-}
+};
 
 var registerPost = function (email, password, username, denomination, church) {
 
-}
+};
 
 var headingGet = function (userKey) { // Returns the username of the profile. 
     var ref = new Firebase(userKey).child('username');
     ref.on("value", function (snapshot) {
         return snapshot.val();
     });
-}
+};
 
 var frontPageGet = function (global) {
-    var topFollowed, topSermons;
-    var ref = new Firebase(root);
+    var topFollowed, topSermons, ref = new Firebase(root);
     ref.child("hot").on("value", function (snapshot) {
         snapshot.forEach(function (post) {
             var postRef = new Firebase(post.val().sermonReference).parent().parent();
@@ -31,7 +30,7 @@ var frontPageGet = function (global) {
             } else {
                 postRef.on("value", function (postSnapshot) {
                     userRef.on("value", function (userSnapshot) {
-                        if (postSnapshot.val().zipcode == userSnapshot.val()) {
+                        if (postSnapshot.val().zipcode === userSnapshot.val()) {
                             topSermons.push(post.val());
                         }
                     });
@@ -40,13 +39,15 @@ var frontPageGet = function (global) {
         });
     });
 
-    if (loggedIn)
+    if (loggedIn) {
         topFollowed = frontPageActivityGet();
+    }
+
 }
 
 var frontPageActivityGet = function () { // Gathers the top 10 sermons from the users followed churches.
-    var churchArray = new Array();
-    var top10 = new Array();
+    var churchArray = [],
+        top10 = [];
 
     var ref = new Firebase(user).child("following");
     console.log(ref.toString());
