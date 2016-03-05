@@ -1,21 +1,44 @@
 <div class="row">
     <div class="col s12">
-        <div>
-            <a href="#!"><img id="profilePic" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="profilePic.jpg"></a>
+        <div class="row">
+            <div class ="col l3 m4 s5">
+                <a href="#!"><img id="profilePic" class="responsive-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="profilePic.jpg"></a>
+            </div>
+            <div id="name"><b>Name</b></div>
+            <div id="Denomination"><b>Denomination</b></div>
+            <div id="Bio">Hi Im a biography, I do crossfit and im a vegan anyway here's my mixtape: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec.</div>
         </div>
-        <div id="name"><b>Name</b></div>
-        <div id="Denomination"><b>Denomination</b></div>
-        <div id="Bio">Hi Im a biography, I do crossfit and im a vegan anyway here's my mixtape: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec.</div>
     </div>
-    <script>
+    <div class="col s4">
+        <script style="scriptStyle">
+        $(function() {
+            $("#profilePic").attr("src", user.val().picture);
+        });
+        </script>
+    </div>
+    <div class="col s8">
+    <script style="scriptStyle">
         $(function() {
             document.getElementById("name").innerHTML = user.val().name;
-            document.getElementById("Denomination").innerHTML = user.val().denomination;
-            document.getElementById("Bio").innerHTML = user.val().bio;
-//            document.getElementById("profilePic").src = user.val().picture;
         });
-
     </script>
+    </div>
+    <div class="col s8">
+    <script style="scriptStyle">
+        $(function() {
+            document.getElementById("Denomination").innerHTML = user.val().denomination;
+        });
+    </script>
+    </div>
+    <div class="col s8">
+    <script style="scriptStyle">
+        $(function() {
+            document.getElementById("Bio").innerHTML = user.val().bio;
+        });
+    </script>
+    </div>
+    
+    
 </div>
 <h5>Subscribed Churches: </h5>
 <div id="subbedChurch" class="col s12">

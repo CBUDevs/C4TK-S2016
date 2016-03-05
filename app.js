@@ -1,6 +1,6 @@
 // GLOBAL VARS
 var root = 'https://c4tk.firebaseio.com/';
-this.user = null; //reference to logged in user
+var user = null; //reference to logged in user
 var church = null; //whether user is a church
 var loggedIn = false; //is logged in
 
@@ -300,24 +300,31 @@ var headingGet = function (userKey) { // Returns the username of the profile.
 };
 
 var frontPageGet = function (global) {
-    var topFollowed, topSermons, ref = new Firebase(root);
-    ref.child("hot").on("value", function (snapshot) {
-        snapshot.forEach(function (post) {
-            var postRef = new Firebase(post.val().sermonReference).parent().parent();
-            var userRef = new Firebase(user).child("zipcode");
-            if (global) {
-                topSermons.push(post.val());
-            } else {
+    var topFollowed, ref = new Firebase(root);
+    console.log(global + ref.toString());
+    ref.child("hot2").on("value", function (snapshot) {
+        //console.log(snapshot.val());
+        if (global) {
+            return snapshot.val();
+        }
+        else {
+            snapshot.forEach(function (post) {
+                var postRef = new Firebase(post.val().sermonReference).parent().parent();
+                console.log(postRef.toString());
+                var userRef = new Firebase("https://c4tk.firebaseio.com/users/0").child("zipcode");
                 postRef.on("value", function (postSnapshot) {
+                    console.log(postSnapshot.val());
                     userRef.on("value", function (userSnapshot) {
+                        console.log(userSnapshot.val());
                         if (postSnapshot.val().zipcode === userSnapshot.val()) {
-                            topSermons.push(post.val());
+                            topFollowed.push(post.val());
                         }
                     });
-                });
-            }
-            return topFollowed;
-        });
+               });
+            });
+        }
+        console.log(topFollowed);
+        return topFollowed;
     });
 }
 
