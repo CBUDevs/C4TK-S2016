@@ -1,27 +1,4 @@
 
-<<<<<<< HEAD
-=======
-    $('.modal-trigger').leanModal();
-    console.log(root);
-});
-
-var login = function () {
-    var uname = document.getElementById("email").value;
-    var pass = document.getElementById("password").value;
-    loginGet(uname, pass);
-};
-
-var register(){
-    
-};
-
-var changeHeading(){
-    
-};
-
-var
-
->>>>>>> bc3d201356e3f55c1c36f36bb6d9a7887c5a825c
 var loginSwitch = function(num) {
   if (num > 0) {
     $(".login-content").show();
@@ -54,6 +31,18 @@ var registerChurch = function() {
 
   registerChurchPost(denomination, description, email, link, password, "", username, zipcode);
   
+}
+
+var changeHeading = function(key) {
+  var val = headingGet(key);
+  $(".brand-logo").text(val);
+}
+
+var goFrontPage = function() {
+  var global = true;
+  if (loggedIn && !($("#global-choice").val())) {
+    
+  }
 }
 
 $(document).ready(function () {

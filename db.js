@@ -83,28 +83,28 @@ var headingGet = function (userKey) { // Returns the username of the profile.
 };
 
 var frontPageGet = function (global) {
-    var topFollowed, topSermons, ref = new Firebase(root);
-    ref.child("hot").on("value", function (snapshot) {
-        snapshot.forEach(function (post) {
-            var postRef = new Firebase(post.val().sermonReference).parent().parent();
-            var userRef = new Firebase(user).child("zipcode");
-            if (global) {
-                topSermons.push(post.val());
-            } else {
-                postRef.on("value", function (postSnapshot) {
-                    userRef.on("value", function (userSnapshot) {
-                        if (postSnapshot.val().zipcode === userSnapshot.val()) {
-                            topSermons.push(post.val());
-                        }
-                    });
-                });
-            }
-        });
-    });
+  var topFollowed, topSermons, ref = new Firebase(root);
+  ref.child("hot").on("value", function (snapshot) {
+      snapshot.forEach(function (post) {
+          var postRef = new Firebase(post.val().sermonReference).parent().parent();
+          var userRef = new Firebase(user).child("zipcode");
+          if (global) {
+              topSermons.push(post.val());
+          } else {
+              postRef.on("value", function (postSnapshot) {
+                  userRef.on("value", function (userSnapshot) {
+                      if (postSnapshot.val().zipcode === userSnapshot.val()) {
+                          topSermons.push(post.val());
+                      }
+                  });
+              });
+          }
+      });
+  });
 
-    if (loggedIn) {
-        topFollowed = frontPageActivityGet();
-    }
+  if (loggedIn) {
+      topFollowed = frontPageActivityGet();
+  }
 
 }
 
