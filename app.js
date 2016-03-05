@@ -7,29 +7,12 @@ var loggedIn = false;
 // MIDDLE FUNCTIONS
 
 
-
 var login = function () {
     var uname = document.getElementById("email").value;
     var pass = document.getElementById("password").value;
     loginGet(uname, pass);
 };
 
-var register = function(){
-    
-};
-
-var changeHeading = function(){
-    
-};
-
-var loginSwitch = function(num) {
-  if (num > 0) {
-    $(".login-content").show();
-    $(".register-content").hide();
-  } else {
-    $(".register-content").show();
-    $(".login-content").hide();
-  }
 var doRevealFillIn = function (self) {
     console.log(self);
     self.style.background = "white";
@@ -667,18 +650,7 @@ var unfollow = function (churchKey) {
 }
 
 $(document).ready(function () {
-  $(".register-content").hide(); // hides the registration content on the login modal.
-  $('.modal-trigger').leanModal();
+    $(".register-content").hide(); // hides the registration content on the login modal.
+    $('.modal-trigger').leanModal();
 
-});
-
-$(document).ready(function() {
-    $('#search').keydown(function(event) {
-        if (event.keyCode == 13) {
-            this.form.submit();
-            var newUrl = ["Templates/searchPage.html"];
-            window.location.replace(newUrl);
-            return false;
-         }
-    });
 });

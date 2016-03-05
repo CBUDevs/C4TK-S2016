@@ -22,6 +22,7 @@
     border-color: #66bb6a;
 }
 #video {
+    margin: 0px 0px 10px 10px;
     float: right;
     width: 40vw;
     height: 25vw;
@@ -77,7 +78,6 @@ a {
     color: green;
 }
 
-<<<<<<< HEAD
 .registerButton{
     margin-bottom:10px;
 }
@@ -88,9 +88,4 @@ a {
 
 .btn :hover{
     background-color: #fbc02d;
-=======
-.fillin{
-    background: black;
-    
->>>>>>> 970f777c88c44aa06973301f194717ae4976f0d7
 }
