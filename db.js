@@ -6,12 +6,27 @@ var loggedIn = false;
 // FIREBASE FUNCTIONS
 var loginGet = function(email, password) {
   var ref = new Firebase(root).child("users");
+  var pass = false;
   ref.on("value", function(snapshot) {
     snapshot.forEach(function(user) {
       if (user.val().email.toLowerCase() == email.toLowerCase() && user.val().password.toLowerCase() == password.toLowerCase()) {
         loggedIn = true;
+        pass = true;
+        church = false;
         user = user.val();
-        return true;
+        return pass;
+      }
+    });
+  });
+  var ref = new Firebase(root).child("churches");
+  ref.on("value", function(snapshot) {
+    snapshot.forEach(function(church) {
+      if (church.val().email.toLowerCase() == email.toLowerCase() && church.val().password.toLowerCase() == password.toLowerCase()) {
+        loggedIn = true;
+        pass = true;
+        church = true;
+        user = church.val();
+        return pass;
       }
     });
   });
@@ -39,6 +54,7 @@ var registerUserPost = function(bio, denomination, email, password, picture, use
   ref.endAt().limit(1).on('child_added', function(snapshot) {
     // all records after the last continue to invoke this function
     user = snapshot.val();
+    church = false;
     console.log(user);
     return true;
   });
@@ -66,6 +82,7 @@ var registerChurchPost = function(denomination, description, email, link, passwo
   ref.endAt().limit(1).on('child_added', function(snapshot) {
     // all records after the last continue to invoke this function
     user = snapshot.val();
+    church = true;
     console.log(user);
     return true;
   });

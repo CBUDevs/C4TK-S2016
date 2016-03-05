@@ -11,7 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
     <script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="db.js"></script>
 
     <meta charset="utf8">
     <title>C4TK S2016</title>
@@ -80,7 +79,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="waves-effect waves-light btn" onclick="login()">Log In</a>
+                    <a class="waves-effect waves-light btn" onclick="login(); doSwitchContext('frontPage')" href=" ">Log In</a>
                 </div>
             </div>
             <div class="register-content row">

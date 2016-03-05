@@ -105,3 +105,15 @@ a {
 #subbedChurches{
     overflow: hidden;
 }
+
+.container{
+    overflow: hidden;
+}
+
+#logInModal{
+    position:fixed;
+    overflow: hidden;
+    height: 300px;
+    bottom: 50%;
+    right: 50%;
+}
