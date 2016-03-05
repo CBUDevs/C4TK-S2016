@@ -1,7 +1,5 @@
 #Header {
     overflow: hidden;
-    background-color: #1b5e20;
-    background: #1b5e20;
     color: white;
 
 }
@@ -19,7 +17,7 @@
 #Subscription img {
     margin: 8px 8px 8px 8px;
     border: solid;
-    border-color: #66bb6a;
+    border-color: #1b5e20;
 }
 #video {
     margin: 0px 0px 10px 10px;
@@ -43,7 +41,7 @@ a {
     width: 150px;
     height: 150px;
     border: solid;
-    border-color:#66bb6a;
+    border-color: #1b5e20;
 }
 #churchName {
     font-size: 20px;
@@ -67,7 +65,7 @@ a {
 #formHead {
     text-align: center;
 }
-#subscribe {
+.subscribe {
     float: right;
     margin-right: 10px;
 }
@@ -96,10 +94,6 @@ a {
 
 .btn :hover{
     background-color: #fbc02d;
-}
-
-.fillin{
-    background: black;
 }
 
 #subbedChurches{

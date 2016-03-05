@@ -59,22 +59,27 @@ var changeHeading = function (key) {
 };
 
 var goFrontPage = function () { // Needs to be changed from console.log to the actual divs.
-    var popular, followed, recommended;
+    var popular = new Array();
+    var followed = new Array();
+    var recommended = new Array();
     var global = true;
     if (!loggedIn) {
         $("#Recommended").hide();
     }
-    popular = frontPageGet(true);
+   // popular.push(frontPageGet(true));
     followed = frontPageActivityGet();
-    recommended = frontPageGet(false);
-
-    for (var i = 0; i < recommended.length; i++) {
-        console.log(recommended[i]);
-    }
-
-    for (var i = 0; i < followed.length; i++) {
-        console.log(followed[i]);
-    }
+    //recommended = frontPageGet(false);
+    console.log(followed);
+    
+    // for (var i = 0; i < frontPageGet(true).length; i++) {
+    //     console.log(frontPageGet(true)[i]);
+    // }
+    // for (var i = 0; i < recommended.length; i++) {
+    //     console.log(recommended[i]);
+    // }
+    // for (var i = 0; i < followed.length; i++) {
+    //     console.log(followed[i]);
+    // }
 }
 
 var frontPageSwitch = function (num) {
@@ -299,13 +304,9 @@ var frontPageGet = function (global) {
                     });
                 });
             }
+            return topFollowed;
         });
     });
-
-    if (loggedIn) {
-        topFollowed = frontPageActivityGet();
-    }
-    return topFollowed;
 }
 
 var frontPageActivityGet = function () { // Gathers the top 10 sermons from the users followed churches.
@@ -314,37 +315,38 @@ var frontPageActivityGet = function () { // Gathers the top 10 sermons from the 
 
     var ref = new Firebase(user).child("following");
     console.log(ref.toString());
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (church) {
-            console.log(church.val());
-            var churchRef = new Firebase(church.val()).child("sermons");
+    ref.once("value", function (snapshot) {
+        snapshot.forEach(function (c) {
+            console.log(c.val());
+            var churchRef = new Firebase(c.val()).child("sermons");
+            console.log(churchRef.toString());
             churchRef.on("value", function (churchSnapshot) {
+                console.log(churchSnapshot.val())
+                
                 churchSnapshot.forEach(function (churchVal) {
+                    console.log(churchVal.val());
                     var churchObj = churchVal.val();
-                    churchObj.key = church.val();
+                    churchObj["key"] = churchVal.ref().toString();
                     churchArray.push(churchObj);
+                    console.log(churchArray);
                 });
+                churchArray.sort(function (a, b) {
+                return b.time - a.time;
+            });
+                if (churchArray.length > 10) {
+                    var j = 10;
+                } else {
+                    var j = churchArray.length;
+                }
+            
+                for (var i = 0; i < j; i++) {
+                    top10[i] = churchArray[i];
+                }
+                console.log(churchArray);
+                return top10;
             });
         });
     });
-
-    // Right now, the sorting seems to return before the values are given and sorted. :/
-    churchArray.sort(function (a, b) {
-        return b.time - a.time;
-    });
-
-    if (churchArray.length > 10) {
-        var j = 10;
-    } else {
-        var j = churchArray.length;
-    }
-
-    for (var i = 0; i < j; i++) {
-        top10[i] = churchArray[i];
-    }
-    console.log(churchArray);
-    return top10;
-
 }
 
 var sermonGet = function (sermonKey) {
