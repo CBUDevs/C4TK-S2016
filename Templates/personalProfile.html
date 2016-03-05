@@ -10,29 +10,15 @@
         </div>
     </div>
     <div class="col s4">
-        <script style="scriptStyle">
+        <script>
         $(function() {
+
             $("#profilePic").attr("src", user.val().picture);
-        });
-        </script>
-    </div>
-    <div class="col s8">
-    <script style="scriptStyle">
-        $(function() {
+
             document.getElementById("name").innerHTML = user.val().name;
-        });
-    </script>
-    </div>
-    <div class="col s8">
-    <script style="scriptStyle">
-        $(function() {
+
             document.getElementById("Denomination").innerHTML = user.val().denomination;
-        });
-    </script>
-    </div>
-    <div class="col s8">
-    <script style="scriptStyle">
-        $(function() {
+ 
             document.getElementById("Bio").innerHTML = user.val().bio;
         });
     </script>

@@ -1,35 +1,36 @@
 // GLOBAL VARS
 var root = 'https://c4tk.firebaseio.com/';
-var user = null; //reference to logged in user
-var church = null; //whether user is a church
+this.user = null; //reference to logged in user
+this.church = null; //whether user is a church
 var loggedIn = false; //is logged in
 
 
 // MIDDLE FUNCTIONS
 
 
-var login = function () {
+var login = function() {
     var uname = document.getElementById("email").value;
     var pw = document.getElementById("password").value;
     loginGet(uname, pw);
 };
 
-var doRevealFillIn = function (self) {
+var doRevealFillIn = function(self) {
     console.log(self);
     self.style.background = "white";
 };
 
-var loginSwitch = function (num) {
+var loginSwitch = function(num) {
     if (num > 0) {
         $(".login-content").show();
         $(".register-content").hide();
-    } else {
+    }
+    else {
         $(".register-content").show();
         $(".login-content").hide();
     }
 };
 
-var registerUser = function () {
+var registerUser = function() {
     var email = $("#user-email").val();
     var password = $("#user-password").val();
     var username = $("#user-username").val();
@@ -40,7 +41,7 @@ var registerUser = function () {
     registerUserPost(bio, denomination, email, password, "", username);
 };
 
-var registerChurch = function () {
+var registerChurch = function() {
     var email = $("#church-email").val();
     var password = $("#church-password").val();
     var username = $("#church-username").val();
@@ -53,12 +54,12 @@ var registerChurch = function () {
 
 }
 
-var changeHeading = function (key) {
+var changeHeading = function(key) {
     var val = headingGet(key);
     $(".brand-logo").text(val);
 };
 
-var goFrontPage = function () { // Needs to be changed from console.log to the actual divs.
+var goFrontPage = function() { // Needs to be changed from console.log to the actual divs.
     var popular = new Array();
     var followed = new Array();
     var recommended = new Array();
@@ -66,11 +67,11 @@ var goFrontPage = function () { // Needs to be changed from console.log to the a
     if (!loggedIn) {
         $("#Recommended").hide();
     }
-   // popular.push(frontPageGet(true));
+    // popular.push(frontPageGet(true));
     followed = frontPageActivityGet();
     //recommended = frontPageGet(false);
     console.log(followed);
-    
+
     // for (var i = 0; i < frontPageGet(true).length; i++) {
     //     console.log(frontPageGet(true)[i]);
     // }
@@ -82,23 +83,25 @@ var goFrontPage = function () { // Needs to be changed from console.log to the a
     // }
 }
 
-var frontPageSwitch = function (num) {
+var frontPageSwitch = function(num) {
     if (num == 0) {
         $("#Popular").show();
         $("#Subscribed").hide();
         $("#Recommended").hide();
-    } else if (num == 1) {
+    }
+    else if (num == 1) {
         $("#Popular").hide();
         $("#Subscribed").show();
         $("#Recommended").hide();
-    } else {
+    }
+    else {
         $("#Popular").hide();
         $("#Subscribed").hide();
         $("#Recommended").show();
     }
 };
 
-var doSearch = function () {
+var doSearch = function() {
     var churches = searchData($('#search').val()[0]);
     var sermons = searchData($('#search').val()[1]);
 
@@ -110,7 +113,7 @@ var doSearch = function () {
     }
 }
 
-var goProfilePage = function (key) {
+var goProfilePage = function(key) {
     var profileInfo = profileGet(key);
     $("#profile-username").text(profileInfo.username);
     if (profileInfo.link)
@@ -129,7 +132,7 @@ var goProfilePage = function (key) {
     }
 }
 
-var doProfileEdit = function (key) {
+var doProfileEdit = function(key) {
     var profileInfo = profileGet(key);
     $("#profile-username").text(profileInfo.username);
     if (profileInfo.link)
@@ -148,12 +151,12 @@ var doProfileEdit = function (key) {
     }
 }
 
-var doProfileSubmit = function () {
+var doProfileSubmit = function() {
     var following = new Array();
     var bio = $("#bio").val();
     var denomination = $("#denomination").val();
     var email = $("#email").val();
-    $(".following").each(function () {
+    $(".following").each(function() {
         following.push($(this).val());
     });
     var password = $('#password').val();
@@ -165,7 +168,7 @@ var doProfileSubmit = function () {
     }
 }
 
-var goChurchPage = function (key) {
+var goChurchPage = function(key) {
     var church = churchGet(key);
     console.log(church.denomination);
     console.log(church.description);
@@ -174,7 +177,7 @@ var goChurchPage = function (key) {
     console.log(church.sermons);
 }
 
-var doSwitchContext = function (context, target) {
+var doSwitchContext = function(context, target) {
     var templatesDir = "/Templates/";
     var translate = {
         "churchProfile": "churchProfile.html",
@@ -192,21 +195,21 @@ var doSwitchContext = function (context, target) {
 }
 
 // FIREBASE FUNCTIONS
-var loginGet = function (email, password) {
+var loginGet = function(email, password) {
     var ref = new Firebase(root).child("users");
     var pass = false;
-    ref.on("value", function (snapshot) {
+    ref.on("value", function(snapshot) {
         console.log(snapshot.val().toString());
-        snapshot.forEach(function (u) {
+        snapshot.forEach(function(u) {
             //            console.log(u.val());
             if (u.val().email == email && u.val().password == password) {
-//                console.log("Matched:" + u.val());
-//                console.log(u.ref().toString());
+                //                console.log("Matched:" + u.val());
+                //                console.log(u.ref().toString());
                 //                loggedIn = true;
                 pass = true;
                 church = false;
                 user = u;
-                    alert("Logged in as " + user.val().username);
+                alert("Logged in as " + user.val().username);
                 return pass;
             }
         });
@@ -214,15 +217,15 @@ var loginGet = function (email, password) {
     });
 
     var ref = new Firebase(root).child("churches");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (c) {
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(c) {
             if (c.val().email === email && c.val().password === password) {
-//                console.log("Matched:" + c.val());
+                //                console.log("Matched:" + c.val());
                 //                loggedIn = true;
                 pass = true;
                 church = true;
-                user = c.ref();
-                    alert("Logged in as " + user.val().username);
+                user = c;
+                alert("Logged in as " + user.val().username);
                 return pass;
             }
         });
@@ -232,10 +235,10 @@ var loginGet = function (email, password) {
 
 }
 
-var registerUserPost = function (bio, denomination, email, password, picture, username, zipcode) {
+var registerUserPost = function(bio, denomination, email, password, picture, username, zipcode) {
     var ref = new Firebase(root).child("users");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (user) {
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(user) {
             if (user.val().email == email) {
                 return false;
             }
@@ -251,7 +254,7 @@ var registerUserPost = function (bio, denomination, email, password, picture, us
         zipcode: zipcode,
     });
 
-    ref.endAt().limit(1).on('child_added', function (snapshot) {
+    ref.endAt().limit(1).on('child_added', function(snapshot) {
         // all records after the last continue to invoke this function
         user = snapshot.val();
         church = false;
@@ -260,10 +263,10 @@ var registerUserPost = function (bio, denomination, email, password, picture, us
     });
 }
 
-var registerChurchPost = function (denomination, description, email, link, password, picture, username, zipcode) {
+var registerChurchPost = function(denomination, description, email, link, password, picture, username, zipcode) {
     var ref = new Firebase(root).child("churches");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (church) {
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(church) {
             if (church.val().email == email) {
                 return false;
             }
@@ -279,7 +282,7 @@ var registerChurchPost = function (denomination, description, email, link, passw
         zipcode: zipcode,
     });
 
-    ref.endAt().limit(1).on('child_added', function (snapshot) {
+    ref.endAt().limit(1).on('child_added', function(snapshot) {
         // all records after the last continue to invoke this function
         user = snapshot.val();
         church = true;
@@ -288,39 +291,59 @@ var registerChurchPost = function (denomination, description, email, link, passw
     });
 }
 
-var logout = function () {
+var logout = function() {
     loggedIn = false;
 }
 
-var headingGet = function (userKey) { // Returns the username of the profile. 
+var headingGet = function(userKey) { // Returns the username of the profile. 
     var ref = new Firebase(userKey).child('username');
-    ref.on("value", function (snapshot) {
+    ref.on("value", function(snapshot) {
         return snapshot.val();
     });
 };
 
-var frontPageGet = function (global) {
+var frontPageGet = function(global) {
     var topFollowed, ref = new Firebase(root);
     console.log(global + ref.toString());
-    ref.child("hot2").on("value", function (snapshot) {
+    ref.child("hot").on("value", function(snapshot) {
         //console.log(snapshot.val());
         if (global) {
             return snapshot.val();
         }
         else {
-            snapshot.forEach(function (post) {
-                var postRef = new Firebase(post.val().sermonReference).parent().parent();
-                console.log(postRef.toString());
+            //console.log(snapshot.val().sermons.controversial.length);
+            for (var i = 0; i < snapshot.val().sermons.controversial.length; i++) {
+                var sermon = snapshot.val().sermons.controversial[i].sermonReference;
+                var postRef = new Firebase(snapshot.val().sermons.controversial[i].sermonReference.toString()).child("zipcode");
                 var userRef = new Firebase("https://c4tk.firebaseio.com/users/0").child("zipcode");
-                postRef.on("value", function (postSnapshot) {
+                postRef.on("value", function(postSnapshot) {
                     console.log(postSnapshot.val());
-                    userRef.on("value", function (userSnapshot) {
+                    userRef.on("value", function(userSnapshot) {
                         console.log(userSnapshot.val());
                         if (postSnapshot.val().zipcode === userSnapshot.val()) {
-                            topFollowed.push(post.val());
+                            topFollowed.push(sermon);
+                            console.log(topFollowed);
                         }
                     });
-               });
+                });
+            }
+            snapshot.forEach(function(childSnap) {
+                childSnap.forEach(function(post) {
+                    console.log(post.val().sermonReference);
+                    console.log(post.val().sermonReference);
+                    var postRef = new Firebase(post.val().sermonReference.ref().toString()).parent().parent();
+                    console.log(postRef.toString());
+                    var userRef = new Firebase("https://c4tk.firebaseio.com/users/0").child("zipcode");
+                    postRef.on("value", function(postSnapshot) {
+                        console.log(postSnapshot.val());
+                        userRef.on("value", function(userSnapshot) {
+                            console.log(userSnapshot.val());
+                            if (postSnapshot.val().zipcode === userSnapshot.val()) {
+                                topFollowed.push(post.val());
+                            }
+                        });
+                    });
+                });
             });
         }
         console.log(topFollowed);
@@ -328,36 +351,37 @@ var frontPageGet = function (global) {
     });
 }
 
-var frontPageActivityGet = function () { // Gathers the top 10 sermons from the users followed churches.
+var frontPageActivityGet = function() { // Gathers the top 10 sermons from the users followed churches.
     var churchArray = [],
         top10 = [];
 
     var ref = new Firebase(user).child("following");
     console.log(ref.toString());
-    ref.once("value", function (snapshot) {
-        snapshot.forEach(function (c) {
+    ref.once("value", function(snapshot) {
+        snapshot.forEach(function(c) {
             console.log(c.val());
             var churchRef = new Firebase(c.val()).child("sermons");
             console.log(churchRef.toString());
-            churchRef.on("value", function (churchSnapshot) {
+            churchRef.on("value", function(churchSnapshot) {
                 console.log(churchSnapshot.val())
-                
-                churchSnapshot.forEach(function (churchVal) {
+
+                churchSnapshot.forEach(function(churchVal) {
                     console.log(churchVal.val());
                     var churchObj = churchVal.val();
                     churchObj["key"] = churchVal.ref().toString();
                     churchArray.push(churchObj);
                     console.log(churchArray);
                 });
-                churchArray.sort(function (a, b) {
-                return b.time - a.time;
-            });
+                churchArray.sort(function(a, b) {
+                    return b.time - a.time;
+                });
                 if (churchArray.length > 10) {
                     var j = 10;
-                } else {
+                }
+                else {
                     var j = churchArray.length;
                 }
-            
+
                 for (var i = 0; i < j; i++) {
                     top10[i] = churchArray[i];
                 }
@@ -368,31 +392,31 @@ var frontPageActivityGet = function () { // Gathers the top 10 sermons from the 
     });
 }
 
-var sermonGet = function (sermonKey) {
+var sermonGet = function(sermonKey) {
     var ref = new Firebase(sermonKey);
-    ref.on("value", function (snapshot) {
+    ref.on("value", function(snapshot) {
         console.log(snapshot.val());
         return snapshot.val();
     });
 }
 
-var churchGet = function (churchKey) {
+var churchGet = function(churchKey) {
     var ref = new Firebase(churchKey);
-    ref.on("value", function (snapshot) {
+    ref.on("value", function(snapshot) {
         return snapshot.val();
     });
 }
 
-var searchData = function (search) {
+var searchData = function(search) {
     var churchArray = new Array();
     var sermonArray = new Array();
     var ref = new Firebase(root).child("churches");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (church) {
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(church) {
             if (church.val().username.toLowerCase().indexOf(search) >= 0 || church.val().zipcode.toLowerCase().indexOf(search) >= 0) {
                 churchArray.push(church.val());
             }
-            church.val().sermons.forEach(function (sermon) {
+            church.val().sermons.forEach(function(sermon) {
                 if (sermon.title.toLowerCase().indexOf(search) >= 0) {
                     sermonArray.push(sermon);
                 }
@@ -403,15 +427,15 @@ var searchData = function (search) {
     console.log(new Array(churchArray, sermonArray));
 }
 
-var profileGet = function (profileKey) {
+var profileGet = function(profileKey) {
     var ref = new Firebase(profileKey);
-    ref.on("value", function (snapshot) {
+    ref.on("value", function(snapshot) {
         console.log(snapshot.val());
         return snapshot.val();
     });
 }
 
-var profilePost = function (profileKey, bio, denomination, email, following, password, picture, username) {
+var profilePost = function(profileKey, bio, denomination, email, following, password, picture, username) {
     var profile = new Firebase(profileKey);
     profile.update({
         bio: bio,
@@ -429,7 +453,7 @@ var profilePost = function (profileKey, bio, denomination, email, following, pas
     }
 }
 
-var sermonPost = function (churchKey, title, notes) {
+var sermonPost = function(churchKey, title, notes) {
     var church = new Firebase(churchKey);
     church.child("sermons").push({
         attendance: 0,
@@ -441,16 +465,16 @@ var sermonPost = function (churchKey, title, notes) {
     });
 }
 
-var sermonDelete = function (sermonKey) {
+var sermonDelete = function(sermonKey) {
     var sermon = new Firebase(sermonKey);
     sermon.remove();
 }
 
-var incrementAttendance = function (sermonKey) {
+var incrementAttendance = function(sermonKey) {
     var sermon = new Firebase(sermonKey);
     var value;
     var checked = false;
-    sermon.once("value", function (snapshot) {
+    sermon.once("value", function(snapshot) {
         if (!checked) {
             value = snapshot.val().attendance + 1;
             checked = true;
@@ -461,7 +485,7 @@ var incrementAttendance = function (sermonKey) {
     });
 }
 
-var upvote = function (postKey, profileKey) { // Activates an upvote.
+var upvote = function(postKey, profileKey) { // Activates an upvote.
     var postRef = new Firebase(postKey);
     var profileRef = new Firebase(profileKey);
     var userRef = new Firebase(user);
@@ -470,10 +494,10 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
 
     if (loggedIn) { // Checks if the user is logged in.
         // Checks to see how if the user has already upvoted and, if so, forbids them from upvoting again.
-        userRef.child("upvoted").once("value", function (snapshot) {
+        userRef.child("upvoted").once("value", function(snapshot) {
             if (snapshot.val() == null) {
                 userRef.child("upvoted").push(postKey);
-                postRef.once("value", function (snapshot) {
+                postRef.once("value", function(snapshot) {
                     if (!checked) {
                         value = snapshot.val().upvotes + 1;
                         checked = true;
@@ -483,7 +507,7 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
                     });
                 });
                 checked = false;
-                profileRef.once("value", function (profileSnapshot) {
+                profileRef.once("value", function(profileSnapshot) {
                     if (!checked) {
                         value = profileSnapshot.val().totalUpvotes + 1;
                         checked = true;
@@ -494,16 +518,16 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
                 });
                 return 0;
             }
-            snapshot.forEach(function (sermon) {
+            snapshot.forEach(function(sermon) {
                 if (sermon.val() == postKey) {
                     return 0;
                 }
                 // Checks to see if the user has downvoted the post. If so, take away from the downvote variable rather than the upvote variable.
-                userRef.child("downvoted").on("value", function (snapshot) {
-                    snapshot.forEach(function (sermon) {
+                userRef.child("downvoted").on("value", function(snapshot) {
+                    snapshot.forEach(function(sermon) {
                         if (sermon.val() == postRef.val()) {
                             sermon.remove();
-                            postRef.once("value", function (postSnapshot) {
+                            postRef.once("value", function(postSnapshot) {
                                 if (!checked) {
                                     value = postSnapshot.val().downvotes - 1;
                                     checked = true;
@@ -513,7 +537,7 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
                                 });
                             });
                             checked = false;
-                            profileRef.once("value", function (profileSnapshot) {
+                            profileRef.once("value", function(profileSnapshot) {
                                 if (!checked) {
                                     value = profileSnapshot.val().totalDownvotes - 1;
                                 }
@@ -525,7 +549,7 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
                         }
                         // Else,increment the upvote variables.
                         userRef.child("upvoted").push(postKey);
-                        postRef.once("value", function (snapshot) {
+                        postRef.once("value", function(snapshot) {
                             if (!checked) {
                                 value = snapshot.val().upvotes + 1;
                                 checked = true;
@@ -535,7 +559,7 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
                             });
                         });
                         checked = false;
-                        profileRef.once("value", function (profileSnapshot) {
+                        profileRef.once("value", function(profileSnapshot) {
                             if (!checked) {
                                 value = profileSnapshot.val().totalUpvotes + 1;
                                 checked = true;
@@ -552,7 +576,7 @@ var upvote = function (postKey, profileKey) { // Activates an upvote.
     }
 }
 
-var downvote = function (postKey, profileKey) { // Activates an downvote.
+var downvote = function(postKey, profileKey) { // Activates an downvote.
     var postRef = new Firebase(postKey);
     var profileRef = new Firebase(profileKey);
     var userRef = new Firebase(user);
@@ -561,10 +585,10 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
 
     if (loggedIn) { // Checks if the user is logged in.
         // Checks to see how if the user has already downvoted and, if so, forbids them from downvoting again.
-        userRef.child("downvoted").once("value", function (snapshot) {
+        userRef.child("downvoted").once("value", function(snapshot) {
             if (snapshot.val() == null) {
                 userRef.child("downvoted").push(postKey);
-                postRef.once("value", function (snapshot) {
+                postRef.once("value", function(snapshot) {
                     if (!checked) {
                         value = snapshot.val().downvotes + 1;
                         checked = true;
@@ -574,7 +598,7 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
                     });
                 });
                 checked = false;
-                profileRef.once("value", function (profileSnapshot) {
+                profileRef.once("value", function(profileSnapshot) {
                     if (!checked) {
                         value = profileSnapshot.val().totalDownvotes + 1;
                         checked = true;
@@ -585,16 +609,16 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
                 });
                 return 0;
             }
-            snapshot.forEach(function (sermon) {
+            snapshot.forEach(function(sermon) {
                 if (sermon.val() == postKey) {
                     return 0;
                 }
                 // Checks to see if the user has upvoted the post. If so, take away from the upvote variable rather than the downvote variable.
-                userRef.child("upvoted").on("value", function (snapshot) {
-                    snapshot.forEach(function (sermon) {
+                userRef.child("upvoted").on("value", function(snapshot) {
+                    snapshot.forEach(function(sermon) {
                         if (sermon.val() == postRef.val()) {
                             sermon.remove();
-                            postRef.once("value", function (postSnapshot) {
+                            postRef.once("value", function(postSnapshot) {
                                 if (!checked) {
                                     value = postSnapshot.val().upvotes - 1;
                                     checked = true;
@@ -604,7 +628,7 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
                                 });
                             });
                             checked = false;
-                            profileRef.once("value", function (profileSnapshot) {
+                            profileRef.once("value", function(profileSnapshot) {
                                 if (!checked) {
                                     value = profileSnapshot.val().totalUpvotes - 1;
                                 }
@@ -616,7 +640,7 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
                         }
                         // Else,increment the upvote variables.
                         userRef.child("downvoted").push(postKey);
-                        postRef.once("value", function (snapshot) {
+                        postRef.once("value", function(snapshot) {
                             if (!checked) {
                                 value = snapshot.val().downvotes + 1;
                                 checked = true;
@@ -626,7 +650,7 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
                             });
                         });
                         checked = false;
-                        profileRef.once("value", function (profileSnapshot) {
+                        profileRef.once("value", function(profileSnapshot) {
                             if (!checked) {
                                 value = profileSnapshot.val().totalDownvotes + 1;
                                 checked = true;
@@ -643,7 +667,7 @@ var downvote = function (postKey, profileKey) { // Activates an downvote.
     }
 }
 
-var follow = function (churchKey) {
+var follow = function(churchKey) {
     var churchRef = new Firebase(churchKey);
     var userRef = new Firebase(user);
     var value;
@@ -654,7 +678,7 @@ var follow = function (churchKey) {
             churchKey
         });
 
-        churchRef.once("value", function (snapshot) {
+        churchRef.once("value", function(snapshot) {
             if (!checked) {
                 value = snapshot.val().followers + 1;
                 checked = true;
@@ -664,23 +688,23 @@ var follow = function (churchKey) {
             });
         });
     }
-}
+};
 
-var unfollow = function (churchKey) {
+var unfollow = function(churchKey) {
     var churchRef = new Firebase(churchKey);
     var userRef = new Firebase(user);
     var value;
     var checked = false;
 
     if (loggedIn) {
-        userRef.child("following").on("value", function (snapshot) {
-            snapshot.forEach(function (church) {
+        userRef.child("following").on("value", function(snapshot) {
+            snapshot.forEach(function(church) {
                 if (church.val() == churchKey)
                     church.remove();
             });
         });
 
-        churchRef.once("value", function (snapshot) {
+        churchRef.once("value", function(snapshot) {
             if (!checked) {
                 value = snapshot.val().followers - 1;
                 checked = true;
@@ -692,16 +716,16 @@ var unfollow = function (churchKey) {
     }
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     $(".register-content").hide(); // hides the registration content on the login modal.
     $('ul.tabs').tabs();
     $('.modal-trigger').leanModal();
     doSwitchContext("frontPage");
     frontPageSwitch(0);
-});
 
-$("#search").keyup(function (event) {
-    if (event.keyCode == 13) {
-        window.location = doSwitchContext("searchPage");
-    }
+    $("#search").keyup(function(event) {
+        if (event.keyCode == 13) {
+            doSwitchContext("searchPage");
+        }
+    });
 });
