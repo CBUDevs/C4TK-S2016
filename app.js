@@ -1,7 +1,7 @@
 // GLOBAL VARS
 var root = 'https://c4tk.firebaseio.com/';
-var user = "https://c4tk.firebaseio.com/users/0";
-var church;
+var user = null;
+var church = null;
 var loggedIn = false;
 
 
@@ -191,13 +191,13 @@ var loginGet = function (email, password) {
     var ref = new Firebase(root).child("users");
     var pass = false;
     ref.on("value", function (snapshot) {
-        snapshot.forEach(function (user) {
-            if (user.val().email.toLowerCase() === email.toLowerCase() && user.val().password.toLowerCase() === password.toLowerCase()) {
+        snapshot.forEach(function (u) {
+            if (u.val().email.toLowerCase() === email.toLowerCase() && u.val().password.toLowerCase() === password.toLowerCase()) {
                 console.log(user.ref().toString());
                 loggedIn = true;
                 pass = true;
                 church = false;
-                user = user.ref();
+                user = u.ref();
                 return pass;
             }
         });
@@ -206,12 +206,12 @@ var loginGet = function (email, password) {
 
         var ref = new Firebase(root).child("churches");
         ref.on("value", function (snapshot) {
-            snapshot.forEach(function (church) {
-                if (church.val().email === email && church.val().password === password) {
+            snapshot.forEach(function (c) {
+                if (c.val().email === email && c.val().password === password) {
                     loggedIn = true;
                     pass = true;
                     church = true;
-                    user = church.ref();
+                    user = c.ref();
                     return pass;
                 }
             });
