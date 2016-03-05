@@ -18,6 +18,9 @@ var changeHeading(){
     
 };
 
+var doRevealFillIn(){
+    this.style.color = "white";
+}
 
 var loginSwitch = function(num) {
   if (num > 0) {
