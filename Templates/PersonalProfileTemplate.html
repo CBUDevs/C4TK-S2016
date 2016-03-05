@@ -3,13 +3,11 @@
   <head>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="style.css" rel="stylesheet" type="text/css">
-      
+      <link href="../style.css" rel="stylesheet" type="text/css">
       <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
-      <script type="text/javascript" src="app.js"></script>
-      
+      <script type="text/javascript" src="../app.js"></script>
       <meta charset="utf8">
       <title>C4TK S2016</title>
   </head>
@@ -67,6 +65,23 @@
   </div>
   
     <div class="container">
-      <!-- Templates will be inserted here -->
+      <div class="row" id="header">
+        <h5 style="text-align:center">You</h5>
+          <div class="col s5 m4 l3" id="profilePic"><a href=""><img src="http://image-link-archive.meteor.com/images/placeholder-640x480.png" alt="churchPic.jpg"></a></div>
+           <div class="input-field col s7 m8 l9">
+             <input placeholder="Name" id="profile_name" type="text" class="validate">
+           </div>
+          
+          <div class="input-field col s7 m8 l9">
+             <input placeholder="Denomination" id="profile_denomination" type="text" class="validate">
+           </div>
+           
+          <div class="input-field col s12">
+          <textarea id="profile_description" class="materialize-textarea"></textarea>
+          <label for="profile_description">Describe Yourself:</label>
+        </div>
+      </div>
+      <a id="Submit" class="waves-effect waves-light btn" onclick="SubmitChangefunction">Submit</a>
     </div>
   </body>
+  

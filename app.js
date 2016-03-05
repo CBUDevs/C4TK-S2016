@@ -406,5 +406,7 @@ var unfollow = function(churchKey) {
 }
 
 $(document).ready(function() {
-    //upvote("https://c4tk.firebaseio.com/churches/0/sermons/0", "https://c4tk.firebaseio.com/churches/0");
+
+    $('.modal-trigger').leanModal();
+
 });
