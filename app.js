@@ -193,7 +193,7 @@ var doSwitchContext = function (context, target) {
 
 // FIREBASE FUNCTIONS
 var loginGet = function (email, password) {
-    var ref = new Firebase(root).child("users2");
+    var ref = new Firebase(root).child("users");
     var pass = false;
     ref.on("value", function (snapshot) {
         console.log(snapshot.val().toString());

@@ -39,7 +39,7 @@ def main():
 	logger.debug("Generating users.")
 	all_users = populate.gen_users.get_users(10)
 	logger.debug("PUTting users.")
-	response = fb.put("/",name="users"+settings["TESTING"],data=all_users,connection=None)
+	response = fb.post("/""users"+settings["TESTING"],data=all_users,connection=None)
 
 	logger.debug("Generating attendance history")
 

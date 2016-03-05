@@ -13,7 +13,7 @@ def get_users(n):
 	all_denoms = populate.clean_denoms.get_cleaned()
 	with open("populate/default_users.txt") as f:
 		defaults = eval(f.read())
-
+	print(defaults)
 	user_list = defaults[:]
 
 	for x in range(n):
