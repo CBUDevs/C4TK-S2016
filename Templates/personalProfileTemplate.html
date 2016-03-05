@@ -1,89 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link href="../style.css" rel="stylesheet" type="text/css">
-      
-      <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
-      <script type="text/javascript" src="../app.js"></script>
-      
-      <meta charset="utf8">
-      <title>C4TK S2016</title>
-  </head>
-  <body class="grey lighten-4">
-    <div class="navbar-fixed">
-      <nav>
-          <div class="nav-wrapper green">
-            <a href="login.html" id="logo" class="brand-logo" style="padding-left:10px">C4TK S2016</a>
-          </div>
-      </nav>
+<div class="row" id="header">
+    <h5 style="text-align:center">You</h5>
+    <div class="col s5 m4 l3" id="profilePic">
+        <a href=""><img src="http://image-link-archive.meteor.com/images/placeholder-640x480.png" alt="churchPic.jpg"></a>
     </div>
-    
-    <div class="fixed-action-btn horizontal" style="top: 30px; right: 24px;">
-    <a class="btn-floating btn-large yellow accent-4">
-      <i class="large material-icons">navigation</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating yellow accent-4"><i class="material-icons">close</i></a></li>
-      <li><a class="btn-floating yellow accent-4 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
-      <li><a class="btn-floating yellow accent-4" href="frontPage.html"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating yellow accent-4" href="personalProfile.html"><i class="material-icons">person</i></a></li>
-      <li><a class="btn-floating yellow accent-4 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
-    </ul>
-  </div>
-    
-    <div id="searchModal" class="modal">
-      <div class="modal-content">
-        <nav>
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" required>
-                <label for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-              </div>
-            </form>
-        </nav>
-      </div>
+    <div class="input-field col s7 m8 l9">
+        <input placeholder="Name" id="profile_name" type="text" class="validate">
     </div>
-      
-  
-    <div id="logInModal" class="modal">
-      <div class="modal-content">
-        <h4>Log In: </h4>
-        <div class ="input-field col s4 push-s4">
-          <input placeholder="Username" id="Username" type="text" class="validate">
-        </div>
-        <div class ="input-field col s4 push-s4">
-          <input placeholder="Password" id="Password" type="text" class="validate">
-        </div>
-      </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Log In</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Register</a>
+
+    <div class="input-field col s7 m8 l9">
+        <input placeholder="Denomination" id="profile_denomination" type="text" class="validate">
     </div>
-  </div>
-  
-    <div class="container">
-      <div class="row" id="header">
-        <h5 style="text-align:center">You</h5>
-          <div class="col s5 m4 l3" id="profilePic"><a href=""><img src="http://image-link-archive.meteor.com/images/placeholder-640x480.png" alt="churchPic.jpg"></a></div>
-           <div class="input-field col s7 m8 l9">
-             <input placeholder="Name" id="profile_name" type="text" class="validate">
-           </div>
-          
-          <div class="input-field col s7 m8 l9">
-             <input placeholder="Denomination" id="profile_denomination" type="text" class="validate">
-           </div>
-           
-          <div class="input-field col s12">
-          <textarea id="profile_description" class="materialize-textarea"></textarea>
-          <label for="profile_description">Describe Yourself:</label>
-        </div>
-      </div>
-      <a id="Submit" class="waves-effect waves-light btn" onclick="SubmitChangefunction">Submit</a>
+
+    <div class="input-field col s12">
+        <textarea id="profile_description" class="materialize-textarea"></textarea>
+        <label for="profile_description">Describe Yourself:</label>
     </div>
-  </body>
-  
+</div>
+<a id="Submit" class="waves-effect waves-light btn" onclick="SubmitChangefunction">Submit</a>
