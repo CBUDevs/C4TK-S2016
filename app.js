@@ -1,9 +1,12 @@
 // GLOBAL VARS
 var root = 'https://c4tk.firebaseio.com/';
-this.user = null; //reference to logged in user
-this.church = null; //whether user is a church
+this.user = 'https://c4tk.firebaseio.com/users/0'; //reference to logged in user
+this.church = false; //whether user is a church
 var loggedIn = false; //is logged in
-
+var topGlobal = [];
+var topFollowed = [];
+var topRecommended = [];
+var currentContext = null;
 
 // MIDDLE FUNCTIONS
 
@@ -67,20 +70,35 @@ var goFrontPage = function() { // Needs to be changed from console.log to the ac
     if (!loggedIn) {
         $("#Recommended").hide();
     }
-    // popular.push(frontPageGet(true));
-    followed = frontPageActivityGet();
-    //recommended = frontPageGet(false);
-    console.log(followed);
-
-    // for (var i = 0; i < frontPageGet(true).length; i++) {
-    //     console.log(frontPageGet(true)[i]);
-    // }
-    // for (var i = 0; i < recommended.length; i++) {
-    //     console.log(recommended[i]);
-    // }
-    // for (var i = 0; i < followed.length; i++) {
-    //     console.log(followed[i]);
-    // }
+    console.log(topGlobal);
+    console.log(topFollowed);
+    console.log(topRecommended);
+    
+    if (topGlobal.length < 1) {
+        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
+        + "<div class='card-content'><h1>").text("No Posts Availible").append($("#Popular"));
+    } else {
+        for (var i = 0; i < topGlobal.length; i++) {
+        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
+        + "<div class='card-content'><h1>").text("No Posts Availible").append($("#Popular"));
+        }
+    }
+    
+     if (topGlobal.length < 1) {
+        
+    } else {
+        for (var i = 0; i < topGlobal.length; i++) {
+            
+        }
+    }
+    
+     if (topGlobal.length < 1) {
+        
+    } else {
+        for (var i = 0; i < topGlobal.length; i++) {
+            
+        }
+    }
 }
 
 var frontPageSwitch = function(num) {
@@ -196,8 +214,26 @@ var doSwitchContext = function(context, target) {
 
 // FIREBASE FUNCTIONS
 var loginGet = function(email, password) {
-    var ref = new Firebase(root).child("users");
     var pass = false;
+
+    var ref = new Firebase(root).child("churches");
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(c) {
+            if (c.val().email === email && c.val().password === password) {
+                //                console.log("Matched:" + c.val());
+                //                loggedIn = true;
+                pass = true;
+                church = true;
+                user = c;
+                alert("Logged in as " + c.val().username);
+                doSwitchContext("profilePage");
+                return pass;
+            }
+        });
+        // changeHeading(user.val().username);
+    });
+
+    ref = new Firebase(root).child("users");
     ref.on("value", function(snapshot) {
         console.log(snapshot.val().toString());
         snapshot.forEach(function(u) {
@@ -209,28 +245,14 @@ var loginGet = function(email, password) {
                 pass = true;
                 church = false;
                 user = u;
-                alert("Logged in as " + user.val().username);
+                doSwitchContext("profilePage");
+                alert("Logged in as " + u.val().username);
                 return pass;
             }
         });
-        changeHeading(user.val().username);
+        // changeHeading(user.val().username);
     });
 
-    var ref = new Firebase(root).child("churches");
-    ref.on("value", function(snapshot) {
-        snapshot.forEach(function(c) {
-            if (c.val().email === email && c.val().password === password) {
-                //                console.log("Matched:" + c.val());
-                //                loggedIn = true;
-                pass = true;
-                church = true;
-                user = c;
-                alert("Logged in as " + user.val().username);
-                return pass;
-            }
-        });
-        changeHeading(user.val().username);
-    });
     return pass;
 
 }
@@ -303,51 +325,28 @@ var headingGet = function(userKey) { // Returns the username of the profile.
 };
 
 var frontPageGet = function(global) {
-    var topFollowed, ref = new Firebase(root);
+    var ref = new Firebase(root);
     console.log(global + ref.toString());
     ref.child("hot").on("value", function(snapshot) {
         //console.log(snapshot.val());
         if (global) {
-            return snapshot.val();
+            //console.log(snapshot.val());
+            topGlobal = snapshot.val();
         }
         else {
-            //console.log(snapshot.val().sermons.controversial.length);
             for (var i = 0; i < snapshot.val().sermons.controversial.length; i++) {
                 var sermon = snapshot.val().sermons.controversial[i].sermonReference;
-                var postRef = new Firebase(snapshot.val().sermons.controversial[i].sermonReference.toString()).child("zipcode");
-                var userRef = new Firebase("https://c4tk.firebaseio.com/users/0").child("zipcode");
-                postRef.on("value", function(postSnapshot) {
-                    console.log(postSnapshot.val());
-                    userRef.on("value", function(userSnapshot) {
-                        console.log(userSnapshot.val());
-                        if (postSnapshot.val().zipcode === userSnapshot.val()) {
+                var postRef = new Firebase(snapshot.val().sermons.controversial[i].sermonReference.toString()).parent().parent();
+                var userRef = new Firebase("https://c4tk.firebaseio.com/users/0");
+                postRef.once("value", function(postSnapshot) {
+                    userRef.once("value", function(userSnapshot) {
+                        if (userSnapshot.val().zipcode.toString() == postSnapshot.val().zipcode.toString()) {
                             topFollowed.push(sermon);
-                            console.log(topFollowed);
                         }
                     });
                 });
             }
-            snapshot.forEach(function(childSnap) {
-                childSnap.forEach(function(post) {
-                    console.log(post.val().sermonReference);
-                    console.log(post.val().sermonReference);
-                    var postRef = new Firebase(post.val().sermonReference.ref().toString()).parent().parent();
-                    console.log(postRef.toString());
-                    var userRef = new Firebase("https://c4tk.firebaseio.com/users/0").child("zipcode");
-                    postRef.on("value", function(postSnapshot) {
-                        console.log(postSnapshot.val());
-                        userRef.on("value", function(userSnapshot) {
-                            console.log(userSnapshot.val());
-                            if (postSnapshot.val().zipcode === userSnapshot.val()) {
-                                topFollowed.push(post.val());
-                            }
-                        });
-                    });
-                });
-            });
         }
-        console.log(topFollowed);
-        return topFollowed;
     });
 }
 
@@ -383,10 +382,10 @@ var frontPageActivityGet = function() { // Gathers the top 10 sermons from the u
                 }
 
                 for (var i = 0; i < j; i++) {
-                    top10[i] = churchArray[i];
+                    topRecommended[i] = churchArray[i];
                 }
-                console.log(churchArray);
-                return top10;
+                // console.log(churchArray);
+                // topRecommended = top10;
             });
         });
     });
@@ -485,9 +484,9 @@ var incrementAttendance = function(sermonKey) {
     });
 }
 
-var upvote = function(postKey, profileKey) { // Activates an upvote.
+var upvote = function(postKey) { // Activates an upvote.
     var postRef = new Firebase(postKey);
-    var profileRef = new Firebase(profileKey);
+    //var profileRef = new Firebase(profileKey);
     var userRef = new Firebase(user);
     var value = 0;
     var checked = false;
@@ -576,9 +575,9 @@ var upvote = function(postKey, profileKey) { // Activates an upvote.
     }
 }
 
-var downvote = function(postKey, profileKey) { // Activates an downvote.
+var downvote = function(postKey) { // Activates an downvote.
     var postRef = new Firebase(postKey);
-    var profileRef = new Firebase(profileKey);
+    //var profileRef = new Firebase(profileKey);
     var userRef = new Firebase(user);
     var value = 0;
     var checked = false;
@@ -690,6 +689,13 @@ var follow = function(churchKey) {
     }
 };
 
+var churchOrPerson = function() {
+    if (this.church == true)
+        doSwitchContext("myChurchProfile");
+    else
+        doSwitchContext("personalProfile");
+}
+
 var unfollow = function(churchKey) {
     var churchRef = new Firebase(churchKey);
     var userRef = new Firebase(user);
@@ -716,16 +722,28 @@ var unfollow = function(churchKey) {
     }
 }
 
+var yass = function(yas) {
+    var yass = yas;
+    return yass;
+}
+
+var print = function() {
+    return yass("yaaasssss");
+}
+
 $(document).ready(function() {
     $(".register-content").hide(); // hides the registration content on the login modal.
     $('ul.tabs').tabs();
     $('.modal-trigger').leanModal();
     doSwitchContext("frontPage");
     frontPageSwitch(0);
-
-    $("#search").keyup(function(event) {
-        if (event.keyCode == 13) {
-            doSwitchContext("searchPage");
-        }
-    });
+    frontPageActivityGet();
+    frontPageGet(true);
+    frontPageGet(false);
 });
+
+function SetPlaceHolder (input) {
+            if (input.value == "") {
+                input.value = input.defaultValue;
+            }
+        }

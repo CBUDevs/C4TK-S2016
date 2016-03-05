@@ -1,36 +1,54 @@
 <div class="row">
     <div class="col s12">
         <div class="row">
-            <div class ="col l3 m4 s5">
+            <div class="col l3 m4 s5">
                 <a href="#!"><img id="profilePic" class="responsive-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="profilePic.jpg"></a>
             </div>
-            <div id="name"><b>Name</b></div>
-            <div id="Denomination"><b>Denomination</b></div>
-            <div id="Bio">Hi Im a biography, I do crossfit and im a vegan anyway here's my mixtape: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec.</div>
+            <div id="name"><b>This could be you!</b></div>
+            <div id="Denomination"><b>Customize your denomination!</b></div>
+            <div id="Bio">Hi Im a biography, I do crossfit and im a vegan anyway here's my mixtape: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis.
+                Nunc lobortis ullamcorper accumsan. Donec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper
+                accumsan. Donec Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu arcu ut diam euismod auctor. Donec id velit leo. Pellentesque fermentum ullamcorper ex ac convallis. Nunc lobortis ullamcorper accumsan. Donec.</div>
         </div>
     </div>
     <div class="col s4">
         <script>
-        $(function() {
+            $(function() {
 
-            $("#profilePic").attr("src", user.val().picture);
+                $("#profilePic").attr("src", user.val().picture);
 
-            document.getElementById("name").innerHTML = user.val().name;
+                document.getElementById("name").innerHTML = user.val().name;
 
-            document.getElementById("Denomination").innerHTML = user.val().denomination;
- 
-            document.getElementById("Bio").innerHTML = user.val().bio;
-        });
-    </script>
+                document.getElementById("Denomination").innerHTML = user.val().denomination;
+
+                document.getElementById("Bio").innerHTML = user.val().bio;
+            });
+        </script>
     </div>
-    
-    
+
+
 </div>
 <h5>Subscribed Churches: </h5>
 <div id="subbedChurch" class="col s12">
     <script>
         $(function() {
-            $('#subbedChurch').load("/Cards/PCSB.html");
+            var test;
+            $.get("/Cards/PCSB.html", function(response) {
+                for (var i = 0; i < 5; i += 1 ) {
+                    console.log(response.toString());
+                    var newChild = document.createElement('div');
+                    newChild.innerHTML = response.toString();
+                    document.getElementById("subbedChurch").appendChild(newChild);
+                }
+            }, 'html');
+            var arr = [];
+            var ref = new Firebase(user.ref());
+            user.on("value", function(snapshot) {
+                snapshot.forEach(function(sub) {
+                    document.getElementById("subbedChurch").appendChild("");
+                });
+            });
+            console.log(user.child("following").val().toString());
         });
     </script>
 </div>
