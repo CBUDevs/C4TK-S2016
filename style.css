@@ -1,12 +1,6 @@
-
-
-li.menu-item.current-menu-item {
-    background: black !important;
-}
-
 #Header{
     overflow:hidden;
-    background-color: green;
+    background-color: #66bb6a;
     color:white;
 }
 #Body{
@@ -22,7 +16,7 @@ li.menu-item.current-menu-item {
 #Subscription img{
     margin: 8px 8px 8px 8px;
     border:solid;
-    
+    border-color:green;
 }
 #video{
     float:right;
@@ -59,6 +53,7 @@ a{
     width:150px;
     height:150px;
     border:solid;
+    border-color:green; 
 }
 #reputation{
     color:green;
@@ -69,7 +64,16 @@ a{
     float:right;
 }
 
-#formHead{
-    text-align: center;
+#formHead{ text-align: center;}
+
+#subscribe{float:right; }
+
+#search{
+    background-color:#81c784;
+}
+
+
+.tabs{
+    background-color: green;
 }
 
