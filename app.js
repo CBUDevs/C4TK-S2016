@@ -163,7 +163,8 @@ var doSwitchContext = function (context, target) {
         "personalProfile": "personalProfile.html",
         "personalProfileTemplate": "personalProfileTemplate.html",
         "sermonPage": "sermonPage.html",
-        "sermonPageTemplate": "sermonPageTemplate.html"
+        "sermonPageTemplate": "sermonPageTemplate.html",
+        "searchPage": "searchPage.html"
     };
     $(".container").load(templatesDir + translate[context]);
 
@@ -639,7 +640,13 @@ var unfollow = function (churchKey) {
 
 $(document).ready(function () {
     $(".register-content").hide(); // hides the registration content on the login modal.
-    $('.modal-trigger').leanModal();
     $('ul.tabs').tabs();
+    $('.modal-trigger').leanModal();
     doSwitchContext("frontPage");
+});
+
+$("#search").keyup(function(event){
+    if(event.keyCode == 13){
+        doSwitchContext("searchPage");
+    }
 });

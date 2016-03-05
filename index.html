@@ -38,8 +38,8 @@
         <ul>
             <li><a class="btn-floating yellow darken-3 btn"><i class="material-icons">close</i></a></li>
             <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
-            <li><a class="btn-floating yellow darken-3 btn" href="Templates/frontPage.html"><i class="material-icons">home</i></a></li>
-            <li><a class="btn-floating yellow darken-3 btn" href="Templates/personalProfile.html"><i class="material-icons">person</i></a></li>
+            <li><a class="btn-floating yellow darken-3 btn" onclick="doSwitchContext('frontPage')"><i class="material-icons">home</i></a></li>
+            <li><a class="btn-floating yellow darken-3 btn" onclick="doSwitchContext('personalProfile')"><i class="material-icons">person</i></a></li>
             <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
         </ul>
     </div>
@@ -63,9 +63,9 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a class="active" onclick="loginSwitch(1)">Log In</a></li>
-                        <li class="tab col s3"><a onclick="loginSwitch(0)">Register</a></li>
-                        <div class="indicator green" style="z-index:1"></div>
+                        <li class="tab col s3"><a class="active" onclick="loginSwitch(1)" href="login-content">Log In</a></li>
+                        <li class="tab col s3"><a onclick="loginSwitch(0)" href="register-content">Register</a></li>
+                        <div class="indicator green darken-4" style="z-index:1"></div>
                     </ul>
                 </div>
             </div>

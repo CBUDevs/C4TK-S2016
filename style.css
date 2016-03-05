@@ -1,7 +1,7 @@
 #Header {
     overflow: hidden;
-    background-color: green;
-    background: green;
+    background-color: #1b5e20;
+    background: #1b5e20;
     color: white;
 
 }
@@ -75,7 +75,15 @@ a {
     background-color: #1b5e20;
 }
 .tabs a:link {
-    color: green;
+    color: #1b5e20;
+}
+
+.tabs a:hover {
+    color: #1b5e20;
+}
+
+.tabs a:visited {
+    color: #1b5e20;
 }
 
 .registerButton{
@@ -92,4 +100,8 @@ a {
 
 .fillin{
     background: black;
+}
+
+#subbedChurches{
+    overflow: hidden;
 }
