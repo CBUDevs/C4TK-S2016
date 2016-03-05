@@ -26,7 +26,7 @@ var loginSwitch = function (num) {
         $(".register-content").show();
         $(".login-content").hide();
     }
-}
+};
 
 var registerUser = function () {
     var email = $("#user-email").val();
@@ -154,31 +154,19 @@ var goChurchPage = function (key) {
     console.log(church.sermons);
 }
 
-
 var doSwitchContext = function (context) {
-    switch (context) {
-        case "churchProfile":
-            $(".container").load("churchProfile.html");
-            break;
-        case "churchProfileTemplate":
-            $(".container").load("churchProfileTemplate.html");
-            break;
-        case "frontPage":
-            $(".container").load("frontPage.html");
-            break;
-        case "personalProfile":
-            $(".container").load("personalProfile.html");
-            break;
-        case "personalProfileTemplate":
-            $(".container").load("personalProfileTemplate.html");
-            break;
-        case "sermonPage":
-            $(".container").load("sermonPage.html");
-            break;
-        case "sermonPageTemplate":
-            $(".container").load("sermonPageTemplate.html");
-            break;
+    var templatesDir = "/Templates/";
+    var translate = {
+        "churchProfile": "churchProfile.html",
+        "churchProfileTemplate": "churchProfileTemplate.html",
+        "frontPage": "frontPage.html",
+        "personalProfile": "personalProfile.html",
+        "personalProfileTemplate": "personalProfileTemplate.html",
+        "sermonPage": "sermonPage.html",
+        "sermonPageTemplate": "sermonPageTemplate.html"
     }
+    $(".container").load(templatesDir + translate[context]);
+
 }
 
 // FIREBASE FUNCTIONS
