@@ -12,7 +12,15 @@ def get_users(n):
 
 	all_denoms = populate.clean_denoms.get_cleaned()
 
-	user_list = []
+	user_list = [{'denomination': 'Wesleyism',
+  'downvoted': [],
+  'email': 'wesley@sailingsupport.com',
+  'following': [],
+  'name': 'Wesley Davis',
+  'password': 'password',
+  'seen': [],
+  'username': 'wesley_davis',
+  'uvpoted': []}]
 	for x in range(n):
 		i = random.choice(contents)
 		first = i[0]
@@ -31,7 +39,7 @@ def get_users(n):
 			"password":i[1] + secret + i[0],
 			"seen":[""],
 			"name":fullname,
-			"picture":"",
+			"picture":"http://memesvault.com/wp-content/uploads/Wat-Meme-Tumblr-04.jpg",
 			"upvoted":[""],
 			"username":i[0] + "_" + i[1] + myid,
 			"bio":"My name is {} and I subscribe to {}.".format(fullname, denom)
