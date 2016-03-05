@@ -1,6 +1,7 @@
 $('.modal-trigger').leanModal();
 console.log(root);
 
+
 var login = function () {
     var uname = document.getElementById("email").value;
     var pass = document.getElementById("password").value;
@@ -25,6 +26,7 @@ var loginSwitch = function (num) {
     }
 }
 
+<<<<<<< HEAD
 var registerUser = function () {
     var email = $("#user-email").val();
     var password = $("#user-password").val();
@@ -32,6 +34,18 @@ var registerUser = function () {
     var denomination = $("#user-denomination").val();
     var zipcode = $("#user-zipcode");
     var bio = $("#bio").val();
+=======
+>>>>>>> a52295d530a8b043bc28bb7948b8a5b1ebbf4240
+var loginSwitch = function(num) {
+  if (num > 0) {
+    $(".login-content").show();
+    $(".register-content").hide();
+  } else {
+    $(".register-content").show();
+    $(".login-content").hide();
+  }
+}
+>>>>>>> dcbafcd1c8bbd63e3ce6fc4a621b26c6b15e4b19
 
     registerUserPost(bio, denomination, email, password, "", username);
 }
@@ -47,6 +61,18 @@ var registerChurch = function () {
 
     registerChurchPost(denomination, description, email, link, password, "", username, zipcode);
 
+}
+
+var changeHeading = function(key) {
+  var val = headingGet(key);
+  $(".brand-logo").text(val);
+}
+
+var goFrontPage = function() {
+  var global = true;
+  if (loggedIn && !($("#global-choice").val())) {
+    
+  }
 }
 
 $(document).ready(function () {
