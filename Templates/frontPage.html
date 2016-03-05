@@ -4,12 +4,10 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="style.css" rel="stylesheet" type="text/css">
-      
       <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
       <script type="text/javascript" src="app.js"></script>
-      
       <meta charset="utf8">
       <title>C4TK S2016</title>
   </head>
@@ -67,28 +65,48 @@
   </div>
   
     <div class="container">
-      <div class="row" id="header">
-        <h5 style="text-align:center">Your Church</h5>
-          <div class="col s5 m4 l3" id="ChurchPic"><a href=""><img src="http://image-link-archive.meteor.com/images/placeholder-640x480.png" alt="churchPic.jpg"></a></div>
-           <div class="input-field col s7 m8 l9">
-             <input placeholder="Church Name" id="church_name" type="text" class="validate">
-           </div>
-          
-          <div class="input-field col s7 m8 l9">
-             <input placeholder="Denomination" id="church_denomination" type="text" class="validate">
-           </div>
-           
-           <div class="input-field col s12">
-             <input placeholder="Link To Church Website" id="church_link" type="text" class="validate">
-           </div>
-           
-          <div class="input-field col s12">
-          <textarea id="church_description" class="materialize-textarea"></textarea>
-          <label for="church_description">Describe Your Church:</label>
-        </div>
+      <!-- Templates will be inserted here -->
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#test1">Recommended</a></li>
+        <li class="tab col s3"><a  href="#test2">Subscribed</a></li>
+      </ul>
+    </div>
+    <div id="test1" class="col s12">
+      <div id=post1>
+      <script> 
+                $(function(){
+                $('#post1').load("../Cards/FPRB.html"); 
+                });
+      </script>
       </div>
-      <a id="Submit" class="waves-effect waves-light btn" onclick="SubmitChangefunction">Submit</a>
-      <a id="Submit" class="waves-effect waves-light btn" onclick="NewSermonfunction">New Sermon</a>
+      <div id="post2">
+      <script> 
+                $(function(){
+                $('#post2').load("../Cards/FPRB.html"); 
+                });
+      </script>
+      </div>
+    </div>
+    
+     <div id="test2" class="col s12">
+      <div id=post3>
+      <script> 
+                $(function(){
+                $('#post3').load("../Cards/FPPB.html"); 
+                });
+      </script>
+      </div>
+      <div id="post4">
+      <script> 
+                $(function(){
+                $('#post4').load("../Cards/FPPB.html"); 
+                });
+      </script>
+      </div>
+    </div>
+  </div>
+      
     </div>
   </body>
-  
