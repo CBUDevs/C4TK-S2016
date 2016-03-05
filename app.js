@@ -164,7 +164,8 @@ var doSwitchContext = function (context, target) {
         "personalProfileTemplate": "personalProfileTemplate.html",
         "sermonPage": "sermonPage.html",
         "sermonPageTemplate": "sermonPageTemplate.html",
-        "searchPage": "searchPage.html"
+        "searchPage": "searchPage.html",
+        "myChurchProfile": "myChurchProfile.html"
     };
     $(".container").load(templatesDir + translate[context]);
 
@@ -172,8 +173,10 @@ var doSwitchContext = function (context, target) {
 
 // FIREBASE FUNCTIONS
 var loginGet = function (email, password) {
+    console.log("TEST");
     var ref = new Firebase(root).child("users");
     ref.on("value", function (snapshot) {
+        console.log(snapshot.val());
         snapshot.forEach(function (user) {
             if (user.val().email.toLowerCase() == email.toLowerCase() && user.val().password.toLowerCase() == password.toLowerCase()) {
                 loggedIn = true;
