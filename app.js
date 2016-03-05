@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
     $('.modal-trigger').leanModal();
     console.log(root);
 });
