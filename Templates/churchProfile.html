@@ -67,6 +67,7 @@
       <div class="row" id="header">
         <div class="col s12">
           <div id="ChurchPic"><img src="http://blogs.thegospelcoalition.org/kevindeyoung/files/2015/02/Pretty-Church.jpg" alt="churchPic.jpg"></div>
+          <a class="btn-floating yellow accent-4" id="subscribe"><i class="material-icons">note_add</i>subscribe</a>
           <div id="churchName"><b>Church Name</b></div>
           <div id="churchLink"><a href="link to church">Click here to visit our website</a></div>
           <div id="churchRep">Reputation: </div>
@@ -74,6 +75,12 @@
         </div>
       </div>
       <h5>Posts: </h5>
-      <!--Cards goes here-->
+      <div id="test2" class="col s12">
+        <script> 
+          $(function(){
+            $('#test2').load("../Cards/CPPB.html"); 
+          });
+        </script>
+    </div>
     </div>
   </body>
