@@ -50,20 +50,51 @@
       </div>
     </div>
       
-  
-    <div id="logInModal" class="modal">
-      <div class="modal-content">
-        <h4>Log In: </h4>
-        <div class ="input-field col s4 push-s4">
-          <input placeholder="Username" id="Username" type="text" class="validate">
+    <div class="row">
+      <div id="logInModal" class="modal col l4 m6 s12 push-l4 push-l3">
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" onclick="loginSwitch(1)">Log In</a></li>
+              <li class="tab col s3"><a onclick="loginSwitch(0)">Register</a></li>
+            </ul>
+          </div>
         </div>
-        <div class ="input-field col s4 push-s4">
-          <input placeholder="Password" id="Password" type="text" class="validate">
+      <div class="login-content row">
+        <div class="modal-content s12">
+          <div class ="input-field col s12">
+            <input placeholder="Email" id="email" type="email" class="validate">
+          </div>
+          <div class ="input-field col s12">
+            <input placeholder="Password" id="password" type="password" class="validate">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect waves-light btn" onclick="login()">Log In</a>
         </div>
       </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Log In</a>
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Register</a>
+      <div class="register-content row">
+        <div class="modal-content s12">
+          <div class ="input-field col s12">
+            <input placeholder="Email" id="email" type="email" class="validate">
+          </div>
+          <div class ="input-field col s12">
+            <input placeholder="Password" id="password" type="password" class="validate">
+          </div>
+          <div class ="input-field col s12">
+            <input placeholder="Username" id="username" type="text" class="validate">
+          </div>
+          <div class ="input-field col s12">
+            <input placeholder="Denomination" id="denomination" type="text" class="validate">
+          </div>
+          <div class="input-field col s12">
+            <textarea id="bio" class="materialize-textarea" placeholder="Tell us about yourself!"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect waves-light btn">Log In</a>
+        </div>
+      </div>
     </div>
   </div>
   
