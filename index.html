@@ -20,7 +20,7 @@
 <body class="grey lighten-4">
     <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper green">
+            <div class="nav-wrapper green darken-4">
                 <a href="login.html" id="logo" class="brand-logo" style="padding-left:10px">C4TK S2016</a>
             </div>
         </nav>
@@ -28,15 +28,15 @@
 
     <div class="fixed-action-btn horizontal" style="top: 30px; right: 24px;">
 
-    <a class="btn-floating btn-large yellow accent-4">
+    <a class="btn-floating btn-large yellow darken-3">
       <i class="large material-icons">navigation</i>
     </a>
     <ul>
-      <li><a class="btn-floating yellow accent-4"><i class="material-icons">close</i></a></li>
-      <li><a class="btn-floating yellow accent-4 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
-      <li><a class="btn-floating yellow accent-4" href="Templates/frontPage.html"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating yellow accent-4" href="Templates/personalProfile.html"><i class="material-icons">person</i></a></li>
-      <li><a class="btn-floating yellow accent-4 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
+      <li><a class="btn-floating yellow darken-3 btn"><i class="material-icons">close</i></a></li>
+      <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#logInModal"><i class="material-icons">input</i></a></li>
+      <li><a class="btn-floating yellow darken-3 btn" href="Templates/frontPage.html"><i class="material-icons">home</i></a></li>
+      <li><a class="btn-floating yellow darken-3 btn" href="Templates/personalProfile.html"><i class="material-icons">person</i></a></li>
+      <li><a class="btn-floating yellow darken-3 waves-effect waves-light btn modal-trigger" href="#searchModal"><i class="material-icons">search</i></a></li>
     </ul>
   </div>
 
@@ -45,7 +45,7 @@
             <nav>
                 <form>
                     <div class="input-field">
-                        <input id="search" type="search" required>
+                        <input id="search" type="search" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" required>
                         <label for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
@@ -61,9 +61,11 @@
             <ul class="tabs">
               <li class="tab col s3"><a class="active" onclick="loginSwitch(1)">Log In</a></li>
               <li class="tab col s3"><a onclick="loginSwitch(0)">Register</a></li>
+              <div class="indicator green" style="z-index:1"></div>
             </ul>
           </div>
         </div>
+    
       <div class="login-content row">
         <div class="modal-content s12">
           <div class ="input-field col s12">
@@ -78,25 +80,9 @@
         </div>
       </div>
       <div class="register-content row">
-        <div class="modal-content s12">
-          <div class ="input-field col s12">
-            <input placeholder="Email" id="email" type="email" class="validate">
-          </div>
-          <div class ="input-field col s12">
-            <input placeholder="Password" id="password" type="password" class="validate">
-          </div>
-          <div class ="input-field col s12">
-            <input placeholder="Username" id="username" type="text" class="validate">
-          </div>
-          <div class ="input-field col s12">
-            <input placeholder="Denomination" id="denomination" type="text" class="validate">
-          </div>
-          <div class="input-field col s12">
-            <textarea id="bio" class="materialize-textarea" placeholder="Tell us about yourself!"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a class="waves-effect waves-light btn">Register</a>
+        <a class="waves-effect waves-light btn registerButton col s12" onclick = "">church</a>
+        <div class="register-content row">
+          <a class="waves-effect waves-light btn registerButton col s12" onclick="doTemplates/personalProfileTemplate.html">Person</a>
         </div>
       </div>
     </div>

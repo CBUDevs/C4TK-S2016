@@ -69,7 +69,7 @@
     <div class="container">
       <div class="row" id="header">
         <h5 style="text-align:center">Your Church</h5>
-          <div class="col s5 m4 l3" id="ChurchPic"><a href=""><img src="http://image-link-archive.meteor.com/images/placeholder-640x480.png" alt="churchPic.jpg"></a></div>
+          <div class="col s5 m4 l3" id="ChurchPic"><a href=""><img src="http://image-link-archive.meteor.com/images/placeholder-640x480.png" alt="churchPic.jpg" onclick= "function()"></a></div>
            <div class="input-field col s7 m8 l9">
              <input placeholder="Church Name" id="church_name" type="text" class="validate">
            </div>
@@ -81,6 +81,12 @@
            <div class="input-field col s12">
              <input placeholder="Link To Church Website" id="church_link" type="text" class="validate">
            </div>
+           <div class="input-field col s12">
+             <input placeholder="Email Address" id="church_email" type="text" class="validate">
+           </div>
+           <div class="input-field col s12">
+             <input placeholder="Street Address" id="church_address" type="text" class="validate">
+           </div>
            
           <div class="input-field col s12">
           <textarea id="church_description" class="materialize-textarea"></textarea>
@@ -88,7 +94,7 @@
         </div>
       </div>
       <a id="Submit" class="waves-effect waves-light btn" href= "frontPage.html" onclick="SubmitChangefunction">Submit</a>
-      <a id="Submit" class="waves-effect waves-light btn" href= "sermonTemplate.html" onclick="SubmitChangefunction">New Sermon</a>
+
     </div>
   </body>
   

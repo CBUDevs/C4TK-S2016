@@ -17,7 +17,7 @@ var loginGet = function(email, password) {
   });
 }
 
-var registerUser = function(bio, denomination, email, password, picture, username) {
+var registerUserPost = function(bio, denomination, email, password, picture, username, zipcode) {
   var ref = new Firebase(root).child("users");
   ref.on("value", function(snapshot) {
     snapshot.forEach(function(user) {
@@ -33,6 +33,7 @@ var registerUser = function(bio, denomination, email, password, picture, usernam
     password : password,
     picture : picture,
     username : username,
+    zipcode : zipcode,
   });
   
   ref.endAt().limit(1).on('child_added', function(snapshot) {
@@ -43,7 +44,7 @@ var registerUser = function(bio, denomination, email, password, picture, usernam
   });
 }
 
-var registerChurch = function(denomination, description, email, link, password, picture, username, zipcode) {
+var registerChurchPost = function(denomination, description, email, link, password, picture, username, zipcode) {
   var ref = new Firebase(root).child("churches");
   ref.on("value", function(snapshot) {
     snapshot.forEach(function(church) {
