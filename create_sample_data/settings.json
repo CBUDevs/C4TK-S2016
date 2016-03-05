@@ -1,0 +1,8 @@
+{
+    "TESTING":"",
+    "baseurl": "https://c4tk.firebaseio.com/",
+    "locations": {
+        "churches": "https://c4tk.firebaseio.com/churches",
+        "users": "https://c4tk.firebaseio.com/users"
+    }
+}
