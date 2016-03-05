@@ -1,8 +1,15 @@
 #Header{
+
     overflow:hidden;
     background-color: #66bb6a;
+
+    background-color: green;
+
     color:white;
 }
+
+#Header img{ margin:10px 10px 0px 0px;}
+
 #Body{
     text-align: left;
     color: black;
@@ -73,7 +80,13 @@ a{
 }
 
 
+
 .tabs{
     background-color: green;
+}
+
+
+.tabs a:link{
+    color:green;
 }
 
