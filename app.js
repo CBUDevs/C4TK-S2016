@@ -5,7 +5,17 @@ $(document).ready(function () {
 });
 
 var login = function () {
-    var uname = document.getElementById("Usernanme").value;
-    var pass = document.getElementById("Password").value;
+    var uname = document.getElementById("email").value;
+    var pass = document.getElementById("password").value;
     loginGet(uname, pass);
 };
+
+var register(){
+    
+};
+
+var changeHeading(){
+    
+};
+
+var
