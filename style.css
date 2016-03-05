@@ -1,8 +1,6 @@
 
 
-.Footer{
-    text-align: left;
-}
+
 #Header{
     overflow:hidden;
     background-color: green;
@@ -16,6 +14,12 @@
 #Footer{
     text-align: left;
     color: black;
+}
+
+#Subscription img{
+    margin: 8px 8px 8px 8px;
+    border:solid;
+    
 }
 #video{
     float:right;
