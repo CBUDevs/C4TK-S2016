@@ -188,7 +188,7 @@ var doSwitchContext = function (context, target) {
 
 // FIREBASE FUNCTIONS
 var loginGet = function (email, password) {
-    var ref = new Firebase(root).child("users");
+    var ref = new Firebase(root).child("users2");
     var pass = false;
     ref.on("value", function (snapshot) {
         console.log(snapshot.val().toString());
@@ -201,10 +201,11 @@ var loginGet = function (email, password) {
                 pass = true;
                 church = false;
                 user = u;
-                    alert("Logged in as" + user.val().username);
+                    alert("Logged in as " + user.val().username);
                 return pass;
             }
         });
+        changeHeading(user.val().username);
     });
 
     var ref = new Firebase(root).child("churches");
@@ -216,10 +217,11 @@ var loginGet = function (email, password) {
                 pass = true;
                 church = true;
                 user = c.ref();
-                    alert("Logged in as" + user.val().username);
+                    alert("Logged in as " + user.val().username);
                 return pass;
             }
         });
+        changeHeading(user.val().username);
     });
     return pass;
 
