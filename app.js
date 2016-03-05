@@ -26,7 +26,6 @@ var loginSwitch = function (num) {
     }
 }
 
-<<<<<<< HEAD
 var registerUser = function () {
     var email = $("#user-email").val();
     var password = $("#user-password").val();
@@ -34,8 +33,7 @@ var registerUser = function () {
     var denomination = $("#user-denomination").val();
     var zipcode = $("#user-zipcode");
     var bio = $("#bio").val();
-=======
->>>>>>> a52295d530a8b043bc28bb7948b8a5b1ebbf4240
+}
 var loginSwitch = function(num) {
   if (num > 0) {
     $(".login-content").show();
@@ -44,10 +42,6 @@ var loginSwitch = function(num) {
     $(".register-content").show();
     $(".login-content").hide();
   }
-}
->>>>>>> dcbafcd1c8bbd63e3ce6fc4a621b26c6b15e4b19
-
-    registerUserPost(bio, denomination, email, password, "", username);
 }
 
 var registerChurch = function () {
