@@ -63,9 +63,9 @@ var changeHeading = function(key) {
 };
 
 var goFrontPage = function() { // Needs to be changed from console.log to the actual divs.
-    var popular = new Array();
-    var followed = new Array();
-    var recommended = new Array();
+    // var popular = new Array();
+    // var followed = new Array();
+    // var recommended = new Array();
     var global = true;
     if (!loggedIn) {
         $("#Recommended").hide();
@@ -74,31 +74,40 @@ var goFrontPage = function() { // Needs to be changed from console.log to the ac
     console.log(topFollowed);
     console.log(topRecommended);
     
-    if (topGlobal.length < 1) {
+    if (topGlobal.sermons.controversial.length < 1) {
+        console.log("eyyy");
         $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
-        + "<div class='card-content'><h1>").text("No Posts Availible").append($("#Popular"));
+        + "<div class='card-content'><h1>").text("No Posts Availible").append("#Popular");
     } else {
-        for (var i = 0; i < topGlobal.length; i++) {
-        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
-        + "<div class='card-content'><h1>").text("No Posts Availible").append($("#Popular"));
+        for (var i = 0; i < topGlobal.sermons.controversial.length; i++) {
+            console.log("adding");
+            $("No Posts Availible").append("#Popular h1");
+            $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
+            + "<div class='card-content'><div class='row z-depth-1 green darken-4' id='Header'>"
+            + "<div class='col s3'><img class='responsive-img' src='http://www.zionfriedheim.org/images/gifs/zion%20church%20new.jpg'></div>"
+            + "<div class='col s8'><h4> Jesus Walkssafdasd on Water</h4></div><div class='col s1'><i>03/04</i></div>"
+            + "<div class='col s9'><h5>Church of Christ</h5></div></div><div class='row' id='Body'>"
+            + "<p class='preview'> in the beginnning of this passage the desiples are out on the boat in a large storm and fearing for their lives... </p>"
+            + "</div><div class='Footer'><hr><div class='row'><div class='col s6'>Likes: <i>30</i></div>"
+            + '<div class="col s6"> Views: <i>432</i></div>').append("#Popular");
         }
     }
     
-     if (topGlobal.length < 1) {
+    //  if (topGlobal.length < 1) {
         
-    } else {
-        for (var i = 0; i < topGlobal.length; i++) {
+    // } else {
+    //     for (var i = 0; i < topGlobal.length; i++) {
             
-        }
-    }
+    //     }
+    // }
     
-     if (topGlobal.length < 1) {
+    //  if (topGlobal.length < 1) {
         
-    } else {
-        for (var i = 0; i < topGlobal.length; i++) {
+    // } else {
+    //     for (var i = 0; i < topGlobal.length; i++) {
             
-        }
-    }
+    //     }
+    // }
 }
 
 var frontPageSwitch = function(num) {
@@ -221,7 +230,7 @@ var loginGet = function(email, password) {
         snapshot.forEach(function(c) {
             if (c.val().email === email && c.val().password === password) {
                 //                console.log("Matched:" + c.val());
-                //                loggedIn = true;
+                loggedIn = true;
                 pass = true;
                 church = true;
                 user = c;
@@ -690,7 +699,7 @@ var follow = function(churchKey) {
 };
 
 var churchOrPerson = function() {
-    if (this.church == true)
+    if (church == true)
         doSwitchContext("myChurchProfile");
     else
         doSwitchContext("personalProfile");

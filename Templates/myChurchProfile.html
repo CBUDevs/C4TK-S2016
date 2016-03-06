@@ -2,19 +2,27 @@
     <div class="col s12">
         <div id="ChurchPic"><img src="http://blogs.thegospelcoalition.org/kevindeyoung/files/2015/02/Pretty-Church.jpg" alt="churchPic.jpg"> </div>
         <a class="btn-floating yellow darken-3 subscribe" onclick="doSwitchContext('sermonTemplate')"><i class="material-icons">note_add</i>subscribe</a>
-        <a class="btn-floating yellow darken-3 subscribe"onclick="doSwitchContext('churchProfileTemplate')" ><i class="material-icons">mode_edit</i>Pencil</a>
-        <div id="churchName"><b>Church Name</b></div>
-        <div id="churchLink"><a href="link to church">Click here to visit our website</a></div>
+        <a class="btn-floating yellow darken-3 subscribe" onclick="doSwitchContext('churchProfileTemplate')"><i class="material-icons">mode_edit</i>Pencil</a>
+        <div id="churchName"><b>The Best Church Name</b></div>
+        <div id="churchLink"><a href="link to church">Our Website</a></div>
         <div id="churchRep">Reputation: </div>
-        <div id="churchDescription">Church Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit, massa eget posuere convallis, eros lacus molestie mauris, scelerisque porta odio tortor et ante. Nunc venenatis dolor mauris. Sed sapien nulla, suscipit vel congue ut, laoreet a augue. Mauris nec ligula eros. Suspendisse ut augue semper dui varius interdum sodales a quam. Nunc et tempus magna. Suspendisse pulvinar libero nec odio facilisis, vel tempus diam ullamcorper. In tempus commodo maximus. Ut bibendum egestas aliquet. Fusce consequat pulvinar congue. Donec tincidunt, tellus ac elementum aliquam, magna leo porttitor velit, eu egestas libero ex quis lacus. Donec convallis malesuada urna at bibendum.</div>
+        <div id="churchDescription">Church Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit, massa eget posuere convallis, eros lacus molestie mauris, scelerisque porta odio tortor et ante. Nunc venenatis dolor mauris. Sed sapien nulla, suscipit
+            vel congue ut, laoreet a augue. Mauris nec ligula eros. Suspendisse ut augue semper dui varius interdum sodales a quam. Nunc et tempus magna. Suspendisse pulvinar libero nec odio facilisis, vel tempus diam ullamcorper. In tempus commodo maximus.
+            Ut bibendum egestas aliquet. Fusce consequat pulvinar congue. Donec tincidunt, tellus ac elementum aliquam, magna leo porttitor velit, eu egestas libero ex quis lacus. Donec convallis malesuada urna at bibendum.</div>
     </div>
 </div>
 <h5>Posts: </h5>
 <div id="test2" class="col s12">
     <script>
         $(function() {
-            $('#test2').load("/Cards/CPPB.html");
-        });
 
+            $("#ChurchPic").attr("src", user.val().picture);
+
+            document.getElementById("churchName").innerHTML = user.val().title;
+
+            // document.getElementById("Denomination").innerHTML = user.val().denomination;
+
+            document.getElementById("churchDescription").innerHTML = user.val().description;
+        });
     </script>
 </div>
