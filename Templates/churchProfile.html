@@ -11,19 +11,24 @@
     </div>
 </div>
 <h5>Posts: </h5>
-<div id="test2" class="col s12">
-
+<div id="sermonCards" class="col s12">
+    
 </div>
 
 <script>
     $(function() {
 
-        $("#ChurchPic").attr("src", user.val().picture);
 
-        document.getElementById("churchName").innerHTML = user.val().name;
+        //create cards for sermons
+        $.get("/Cards/FPPB.html", function(response) {
+            console.log(response.toString());
+            var newChild = document.createElement('div');
+            document.getElementById("sermonCards").appendChild(newChild);
+            newChild.innerHTML = response;
+            newchild.getElementById("title").innerHTML = title;
+            newchild.getElementById("title").innerHTML = notes;
 
-        // document.getElementById("Denomination").innerHTML = user.val().denomination;
+        }, 'html');
 
-        document.getElementById("churchDescription").innerHTML = user.val().description;
     });
 </script>

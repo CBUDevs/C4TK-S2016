@@ -33,14 +33,18 @@
     <script>
         $(function() {
             var test;
-            $.get("/Cards/PCSB.html", function(response) {
-                for (var i = 0; i < 5; i += 1 ) {
+            for (var i = 0; i < 5; i += 1) {
+                $.get("/Cards/PCSB.html", function(response) {
                     console.log(response.toString());
                     var newChild = document.createElement('div');
-                    newChild.innerHTML = response.toString();
+                    newChild.innerHTML = response;
+                    newChild.getElementById()
                     document.getElementById("subbedChurch").appendChild(newChild);
-                }
-            }, 'html');
+                }, 'html');
+            }
+
+
+
             var arr = [];
             var ref = new Firebase(user.ref());
             user.on("value", function(snapshot) {

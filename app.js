@@ -1,9 +1,9 @@
 // GLOBAL VARS
 var root = 'https://c4tk.firebaseio.com/';
-this.user = 'https://c4tk.firebaseio.com/users/0'; //reference to logged in user
+user = 'https://c4tk.firebaseio.com/users/0'; //reference to logged in user
 this.church = false; //whether user is a church
 var loggedIn = false; //is logged in
-var topGlobal = [];
+var topGlobal = {};
 var topFollowed = [];
 var topRecommended = [];
 var currentContext = null;
@@ -63,9 +63,6 @@ var changeHeading = function(key) {
 };
 
 var goFrontPage = function() { // Needs to be changed from console.log to the actual divs.
-    // var popular = new Array();
-    // var followed = new Array();
-    // var recommended = new Array();
     var global = true;
     if (!loggedIn) {
         $("#Recommended").hide();
@@ -73,39 +70,78 @@ var goFrontPage = function() { // Needs to be changed from console.log to the ac
     console.log(topGlobal);
     console.log(topFollowed);
     console.log(topRecommended);
-    
+
     if (topGlobal.sermons.controversial.length < 1) {
         console.log("eyyy");
-        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
-        + "<div class='card-content'><h1>").text("No Posts Availible").append("#Popular");
-    } else {
+        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>" + "<div class='card-content'><h1>").text("No Posts Availible").append("#Popular");
+    }
+    else {
         for (var i = 0; i < topGlobal.sermons.controversial.length; i++) {
-            console.log("adding");
-            $("No Posts Availible").append("#Popular h1");
-            $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>"
-            + "<div class='card-content'><div class='row z-depth-1 green darken-4' id='Header'>"
-            + "<div class='col s3'><img class='responsive-img' src='http://www.zionfriedheim.org/images/gifs/zion%20church%20new.jpg'></div>"
-            + "<div class='col s8'><h4> Jesus Walkssafdasd on Water</h4></div><div class='col s1'><i>03/04</i></div>"
-            + "<div class='col s9'><h5>Church of Christ</h5></div></div><div class='row' id='Body'>"
-            + "<p class='preview'> in the beginnning of this passage the desiples are out on the boat in a large storm and fearing for their lives... </p>"
-            + "</div><div class='Footer'><hr><div class='row'><div class='col s6'>Likes: <i>30</i></div>"
-            + '<div class="col s6"> Views: <i>432</i></div>').append("#Popular");
+            var ref = new Firebase(topGlobal.sermons.controversial[i].sermonReference);
+            var attendance;
+            var points;
+            var date;
+            var day;
+            var month;
+            var title;
+            var preview;
+            var denom;
+
+            
+            ref.on("value", function(snapshot) {
+                points = snapshot.val().upvotes;
+                attendance = snapshot.val().attendance;
+                points = snapshot.val().upvotes - snapshot.val().downvotes;
+                date = new Date(snapshot.val().parenttime * 1000);
+                day = date.getDay();
+                month = date.getMonth();
+                title = snapshot.val().title;
+                preview = snapshot.val().notes.substring(0, 140) + "...";
+
+                console.log("sadasg");
+                console.log(attendance);
+                console.log(points);
+                console.log(date);
+                console.log(month);
+                console.log(title);
+                console.log(preview);
+
+                //setTimeout(function() {
+                $.get("/Cards/FPPB.html", function(response) {
+                    console.log(response.toString());
+                    var newChild = document.createElement('div');
+                    newChild.id = "card" + i;
+                    newChild.innerHTML = response;
+                    document.getElementById("Popular").appendChild(newChild);
+
+                    $("#card" + i + " #views").text(attendance);
+                    $("#card" + i + " #points").text(points);
+                    $("#card" + i + " #day").text(day);
+                    $("#card" + i + " #month").text(month);
+                    $("#card" + i + " #title").text(title);
+                    $("#card" + i + " #preview").text(preview);
+
+                }, 'html');
+                //}, 1000);
+
+            });
+
         }
     }
-    
+
     //  if (topGlobal.length < 1) {
-        
+
     // } else {
     //     for (var i = 0; i < topGlobal.length; i++) {
-            
+
     //     }
     // }
-    
+
     //  if (topGlobal.length < 1) {
-        
+
     // } else {
     //     for (var i = 0; i < topGlobal.length; i++) {
-            
+
     //     }
     // }
 }
@@ -749,10 +785,13 @@ $(document).ready(function() {
     frontPageActivityGet();
     frontPageGet(true);
     frontPageGet(false);
+    setTimeout(function(){
+        goFrontPage();
+    }, 1000);
 });
 
-function SetPlaceHolder (input) {
-            if (input.value == "") {
-                input.value = input.defaultValue;
-            }
-        }
+function SetPlaceHolder(input) {
+    if (input.value == "") {
+        input.value = input.defaultValue;
+    }
+}

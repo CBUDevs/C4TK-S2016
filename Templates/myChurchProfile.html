@@ -23,6 +23,14 @@
             // document.getElementById("Denomination").innerHTML = user.val().denomination;
 
             document.getElementById("churchDescription").innerHTML = user.val().description;
+
+            //create cards for sermons
+            $.get("/Cards/SCPB.html", function(response) {
+                console.log(response.toString());
+                var newChild = document.createElement('div');
+                newChild.innerHTML = response.toString();
+                document.getElementById("subbedChurch").appendChild(newChild);
+            }, 'html');
         });
     </script>
 </div>
