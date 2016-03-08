@@ -3,10 +3,10 @@ var root = 'https://c4tk.firebaseio.com/';
 user = 'https://c4tk.firebaseio.com/users/0'; //reference to logged in user
 this.church = false; //whether user is a church
 var loggedIn = false; //is logged in
-var topGlobal = {};
+var topGlobal = [];
 var topFollowed = [];
 var topRecommended = [];
-var currentContext = null;
+var currentContext = undefined;
 
 // MIDDLE FUNCTIONS
 
@@ -67,17 +67,24 @@ var goFrontPage = function() { // Needs to be changed from console.log to the ac
     if (!loggedIn) {
         $("#Recommended").hide();
     }
-    console.log(topGlobal);
-    console.log(topFollowed);
-    console.log(topRecommended);
+    // console.log(topGlobal);
+    // console.log(topFollowed);
+    // console.log(topRecommended);
 
     if (topGlobal.sermons.controversial.length < 1) {
         console.log("eyyy");
-        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>" + "<div class='card-content'><h1>").text("No Posts Availible").append("#Popular");
+        $("<a onclick='doSwitchContext('sermonPage')'><div class='col s12'><div class='card'>" + "<div class='card-content'><h1>").text("No Posts Available").append("#Popular");
     }
     else {
+      var  postList = [];
         for (var i = 0; i < topGlobal.sermons.controversial.length; i++) {
-            var ref = new Firebase(topGlobal.sermons.controversial[i].sermonReference);
+               postList.push(undefined);
+        }
+        
+        for (var i = 0; i < topGlobal.sermons.controversial.length; i++) {
+            // console.log(topGlobal.sermons.controversial);
+            var ref = topGlobal.sermons.controversial[i].sermonReference.toString();
+            // console.log("Ref: " + ref.toString());
             var attendance;
             var points;
             var date;
@@ -87,45 +94,55 @@ var goFrontPage = function() { // Needs to be changed from console.log to the ac
             var preview;
             var denom;
 
-            
-            ref.on("value", function(snapshot) {
-                points = snapshot.val().upvotes;
-                attendance = snapshot.val().attendance;
-                points = snapshot.val().upvotes - snapshot.val().downvotes;
-                date = new Date(snapshot.val().parenttime * 1000);
-                day = date.getDay();
-                month = date.getMonth();
-                title = snapshot.val().title;
-                preview = snapshot.val().notes.substring(0, 140) + "...";
 
-                console.log("sadasg");
-                console.log(attendance);
-                console.log(points);
-                console.log(date);
-                console.log(month);
-                console.log(title);
-                console.log(preview);
+            // ref.on("value", function(ss) {
+            // });
+            console.log("Getting ref: " + ref);
 
-                //setTimeout(function() {
-                $.get("/Cards/FPPB.html", function(response) {
-                    console.log(response.toString());
-                    var newChild = document.createElement('div');
-                    newChild.id = "card" + i;
-                    newChild.innerHTML = response;
-                    document.getElementById("Popular").appendChild(newChild);
+            (function(n) {
+                var j = n;
+                $.get(ref + ".json", function(snapshot) {
+                    // console.log("Snapshot: " + JSON.stringify(snapshot));
+                    postList[n] = snapshot;
+                    points = snapshot['upvotes'];
+                    // console.log("sadasg");
+                    attendance = snapshot.attendance;
+                    points = snapshot.upvotes - snapshot.downvotes;
+                    date = new Date(snapshot.parenttime * 1000);
+                    day = date.getDay();
+                    month = date.getMonth();
+                    title = snapshot.title;
+                    preview = snapshot["notes"];
 
-                    $("#card" + i + " #views").text(attendance);
-                    $("#card" + i + " #points").text(points);
-                    $("#card" + i + " #day").text(day);
-                    $("#card" + i + " #month").text(month);
-                    $("#card" + i + " #title").text(title);
-                    $("#card" + i + " #preview").text(preview);
+                    // console.log(attendance);
+                    // console.log(points);
+                    // console.log(date);
+                    // console.log(month);
+                    // console.log(title);
+                    // console.log(preview);
 
-                }, 'html');
-                //}, 1000);
+                    //setTimeout(function() {
+                    $.get("/Cards/FPPB.html", function(cardTemplate) {
+                        var name = "card" + j.toString();
+                        console.log("Card: " + name);
+                        // console.log(response.toString());
+                        var newChild = document.createElement('div');
+                        document.getElementById("Popular").appendChild(newChild);
+                        newChild.id = name;
+                        newChild.innerHTML = cardTemplate;
+                        $(name + " #views").text(attendance);
+                        $("#card" + j + " #points").text(points);
+                        $("#card" + j + " #day").text(day);
+                        $("#card" + j + " #month").text(month);
+                        $("#" + name + " #title").text(title);
+                        $("#" + name + " #preview").text(preview);
 
-            });
+                    }, 'html');
+                    //}, 1000);
+                }, 'json');
 
+
+            })(i);
         }
     }
 
@@ -144,6 +161,7 @@ var goFrontPage = function() { // Needs to be changed from console.log to the ac
 
     //     }
     // }
+    // console.log(topGlobal.toString());
 }
 
 var frontPageSwitch = function(num) {
@@ -785,7 +803,7 @@ $(document).ready(function() {
     frontPageActivityGet();
     frontPageGet(true);
     frontPageGet(false);
-    setTimeout(function(){
+    setTimeout(function() {
         goFrontPage();
     }, 1000);
 });
